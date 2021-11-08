@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:login_signup_page_flutter/screens/home_screen.dart';
-import 'package:login_signup_page_flutter/screens/info_screen.dart';
-import 'package:login_signup_page_flutter/screens/signup_screen.dart';
-import 'package:login_signup_page_flutter/screens/terms_conditions_screen.dart';
+import 'package:login_signup_page_flutter/task_4_login_signup/screens/home_screen.dart';
+import 'package:login_signup_page_flutter/task_4_login_signup/screens/info_screen.dart';
+import 'package:login_signup_page_flutter/task_4_login_signup/screens/signup_screen.dart';
+import 'package:login_signup_page_flutter/task_4_login_signup/screens/terms_conditions_screen.dart';
 
 void main() {
   runApp(const MyApp());
