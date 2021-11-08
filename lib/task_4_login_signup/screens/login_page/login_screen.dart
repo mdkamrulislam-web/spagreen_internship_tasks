@@ -1,0 +1,277 @@
+import 'package:flutter/material.dart';
+import 'package:login_signup_page_flutter/task_4_login_signup/screens/login_page/forgot_password_screen.dart';
+import 'package:login_signup_page_flutter/task_4_login_signup/screens/signup_page/signup_screen.dart';
+
+import '../home_screen.dart';
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+  static const String id = "login_screen";
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  // * Password Visibility Initialization
+  bool _isHidden = true;
+
+  // *Form Key
+  final _formKey = GlobalKey<FormState>();
+
+  // * Editing Controller
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double textFormFieldPadding = 8;
+    // ! Email Field
+    final emailField = TextFormField(
+      decoration: const InputDecoration(
+        // prefixIcon: ,
+        border: InputBorder.none,
+        hintText: 'Email',
+      ),
+      autofocus: false,
+      controller: emailController,
+      keyboardType: TextInputType.emailAddress,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "Please Enter Your Email!";
+        }
+        //reg expression for email validation
+        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+          return ("Please Enter a valid email");
+        }
+        return null;
+      },
+      onSaved: (value) {
+        emailController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+    );
+    // ! Password Field
+    final passwordField = TextFormField(
+      obscureText: _isHidden,
+      decoration: InputDecoration(
+        border: InputBorder.none,
+        hintText: 'Password',
+        suffix: Padding(
+          padding: const EdgeInsets.only(right: 16.0),
+          child: InkWell(
+            onTap: _togglePasswordVisibility,
+            child: Icon(
+              _isHidden ? Icons.visibility : Icons.visibility_off,
+            ),
+          ),
+        ),
+      ),
+      autofocus: false,
+      controller: passwordController,
+      validator: (value) {
+        RegExp regex = RegExp(r'^.{6,}$');
+        if (value!.isEmpty) {
+          return ("Please Enter Your Password");
+        }
+        if (!regex.hasMatch(value)) {
+          return ("Please Enter Valid Password (Minimum 6 Characters.)");
+        }
+        return null;
+      },
+      onSaved: (value) {
+        passwordController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+    );
+
+    // ! Login Button
+    final loginButton = ElevatedButton(
+      onPressed: () {
+        // ignore: avoid_print
+        print("Loging In!");
+
+        if (_formKey.currentState!.validate()) {
+          signUp(emailController.text, passwordController.text);
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              duration: Duration(seconds: 2),
+              content: Text("Processing Data"),
+            ),
+          );
+        }
+      },
+      child: const Padding(
+        padding: EdgeInsets.all(12.0),
+        child: Text(
+          "Sign In",
+          style: TextStyle(fontSize: 18),
+        ),
+      ),
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        backgroundColor: MaterialStateProperty.all(
+          const Color(0xFF1cbb7c),
+        ),
+      ),
+    );
+
+    // ! Sign Up Button
+    final signUpButton = ElevatedButton(
+      onPressed: () {
+        // ignore: avoid_print
+        print("Signing Up!");
+
+        Navigator.pushNamed(context, SignupScreen.id);
+      },
+      child: const Padding(
+        padding: EdgeInsets.all(12.0),
+        child: Text(
+          "Sign Up",
+          style: TextStyle(fontSize: 18),
+        ),
+      ),
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        backgroundColor: MaterialStateProperty.all(
+          const Color(0xFF899cad),
+        ),
+      ),
+    );
+
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Center(
+                child: Column(
+                  children: [
+                    Text(
+                      "Welcome",
+                      style: TextStyle(
+                          fontSize: size.width / 12,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "to Application",
+                      style: TextStyle(
+                          fontSize: size.width / 12,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    // ! Email Field
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: textFormFieldPadding),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: const Color(0xFFf3f3f3),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: emailField,
+                        ),
+                      ),
+                    ),
+                    // ! Password Field
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: textFormFieldPadding),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: const Color(0xFFf3f3f3),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: passwordField,
+                        ),
+                      ),
+                    ),
+                    // ! Login Button
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 16.0),
+                            child: loginButton,
+                          ),
+                        ),
+                      ],
+                    ),
+                    // ! Forget Password
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            // ignore: avoid_print
+                            print("Showing Forgot Password Options");
+                            Navigator.pushNamed(
+                                context, ForgotPasswordScreen.id);
+                          });
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.only(top: 16.0),
+                          child: Text(
+                            "Forgot password?",
+                            style: TextStyle(
+                              color: Color(0xFF1cbb7c),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // ! Sign Up Button
+              Padding(
+                padding: const EdgeInsets.only(bottom: 40.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: signUpButton,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void signUp(String email, String password) {
+    if (_formKey.currentState!.validate()) {
+      Navigator.pushNamed(context, HomeScreen.id);
+    }
+  }
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
+}

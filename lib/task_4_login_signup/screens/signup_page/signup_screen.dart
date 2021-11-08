@@ -205,7 +205,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     onTap: () {
                       setState(() {
                         // ignore: avoid_print
-                        print("Goiing Back!");
+                        print("Going Back!");
                       });
                     },
                     child: Row(
