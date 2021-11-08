@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
         HomeScreen.id: (context) => const HomeScreen(),
       },
       title: 'Login Signup Demo',
-      // home: SignupScreen(),
     );
   }
 }

@@ -8,7 +8,7 @@ class InfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        children: [
+        children: const [
           Center(
             child: Text(
               "Info Screen",

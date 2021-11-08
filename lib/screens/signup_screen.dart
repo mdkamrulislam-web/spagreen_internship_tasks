@@ -17,13 +17,13 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  //Importing Image or Taking Image
+  // *Importing Image or Taking Image
   XFile? _image;
 
-  //Form Key
+  // *Form Key
   final _formKey = GlobalKey<FormState>();
 
-  //Editing Controller
+  // * Editing Controller
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -197,7 +197,7 @@ class _SignupScreenState extends State<SignupScreen> {
           child: ListView(
             // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ! Welcome
+              // ? Welcome
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -271,7 +271,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       fontSize: size.width / 12, fontWeight: FontWeight.bold),
                 ),
               ),
-              // ! Setting Profile Photo
+              // ? Setting Profile Photo
               Center(
                 child: Stack(
                   children: [
