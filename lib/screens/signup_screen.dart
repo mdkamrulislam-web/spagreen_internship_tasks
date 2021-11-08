@@ -6,7 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:login_signup_page_flutter/screens/home_screen.dart';
 import 'package:login_signup_page_flutter/screens/info_screen.dart';
-import 'package:login_signup_page_flutter/screens/term_conditions_screen.dart';
+import 'package:login_signup_page_flutter/screens/terms_conditions_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
