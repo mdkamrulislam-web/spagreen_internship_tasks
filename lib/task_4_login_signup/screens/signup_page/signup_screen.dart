@@ -36,10 +36,15 @@ class _SignupScreenState extends State<SignupScreen> {
     double textFormFieldPadding = 8;
     // ! First Name Field
     final firstNameField = TextFormField(
-      decoration: const InputDecoration(
-        // prefixIcon: ,
-        border: InputBorder.none,
-        hintText: 'First Name',
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide.none,
+        ),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        fillColor: const Color(0xFFf3f3f3),
+        filled: true,
+        hintText: "First Name",
       ),
       autofocus: false,
       controller: firstNameController,
@@ -61,9 +66,14 @@ class _SignupScreenState extends State<SignupScreen> {
     );
     // ! Last Name Field
     final lastNameField = TextFormField(
-      decoration: const InputDecoration(
-        // prefixIcon: ,
-        border: InputBorder.none,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide.none,
+        ),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        fillColor: const Color(0xFFf3f3f3),
+        filled: true,
         hintText: 'Last Name',
       ),
       autofocus: false,
@@ -86,9 +96,14 @@ class _SignupScreenState extends State<SignupScreen> {
     );
     // ! Email Field
     final emailField = TextFormField(
-      decoration: const InputDecoration(
-        // prefixIcon: ,
-        border: InputBorder.none,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide.none,
+        ),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        fillColor: const Color(0xFFf3f3f3),
+        filled: true,
         hintText: 'Email',
       ),
       autofocus: false,
@@ -112,8 +127,14 @@ class _SignupScreenState extends State<SignupScreen> {
     // ! Password Field
     final passwordField = TextFormField(
       obscureText: true,
-      decoration: const InputDecoration(
-        border: InputBorder.none,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide.none,
+        ),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        fillColor: const Color(0xFFf3f3f3),
+        filled: true,
         hintText: 'Password',
       ),
       autofocus: false,
@@ -136,8 +157,14 @@ class _SignupScreenState extends State<SignupScreen> {
     // ! Confrim Password Field
     final confirmPassField = TextFormField(
       obscureText: true,
-      decoration: const InputDecoration(
-        border: InputBorder.none,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide.none,
+        ),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        fillColor: const Color(0xFFf3f3f3),
+        filled: true,
         hintText: 'Confirm Password',
       ),
       autofocus: false,
@@ -206,6 +233,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       setState(() {
                         // ignore: avoid_print
                         print("Going Back!");
+                        Navigator.pop(context);
                       });
                     },
                     child: Row(
@@ -275,27 +303,36 @@ class _SignupScreenState extends State<SignupScreen> {
               Center(
                 child: Stack(
                   children: [
-                    const Icon(
-                      Icons.account_circle_sharp,
-                      size: 150,
-                      color: Color(0xffcdd8dd),
-                    ),
-                    CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      radius: 75,
-                      child: _image == null
-                          ? Image.asset('assets/images/transparent.png')
-                          : ClipRRect(
-                              child: Image(
-                                image: FileImage(
-                                  File(_image!.path),
-                                ),
-                              ),
-                            ),
-                    ),
+                    _image == null
+                        ? const Icon(
+                            Icons.account_circle_sharp,
+                            size: 120,
+                            color: Color(0xffcdd8dd),
+                          )
+                        : CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            radius: 60,
+                            child: _image == null
+                                ? Image.asset('assets/images/transparent.png')
+                                : Container(
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image: FileImage(
+                                            File(_image!.path),
+                                          ),
+                                        )),
+                                    // child: Image(
+                                    //   image: FileImage(
+                                    //     File(_image!.path),
+                                    //   ),
+                                    // ),
+                                  ),
+                          ),
                     Positioned(
-                      bottom: 16,
-                      right: 16,
+                      bottom: 8,
+                      right: 8,
                       child: InkWell(
                         onTap: () {
                           _showSelectedImageDialog();
@@ -323,7 +360,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
               SizedBox(
-                height: size.height / 60,
+                height: size.height / 30,
               ),
               // ? Signup Form
               Form(
@@ -338,12 +375,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             vertical: textFormFieldPadding),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: const Color(0xFFf3f3f3),
+                              color: const Color(0x0fffffff),
                               borderRadius: BorderRadius.circular(10)),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: firstNameField,
-                          ),
+                          child: firstNameField,
                         ),
                       ),
                       // ! Last Name Field
@@ -352,12 +386,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             vertical: textFormFieldPadding),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: const Color(0xFFf3f3f3),
+                              color: const Color(0x0fffffff),
                               borderRadius: BorderRadius.circular(10)),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: lastNameField,
-                          ),
+                          child: lastNameField,
                         ),
                       ),
                       // ! Email Field
@@ -366,12 +397,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             vertical: textFormFieldPadding),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: const Color(0xFFf3f3f3),
+                              color: const Color(0x0fffffff),
                               borderRadius: BorderRadius.circular(10)),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: emailField,
-                          ),
+                          child: emailField,
                         ),
                       ),
                       // ! Password Field
@@ -380,12 +408,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             vertical: textFormFieldPadding),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: const Color(0xFFf3f3f3),
+                              color: const Color(0x0fffffff),
                               borderRadius: BorderRadius.circular(10)),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: passwordField,
-                          ),
+                          child: passwordField,
                         ),
                       ),
                       // ! Confirm Password Field
@@ -394,12 +419,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             vertical: textFormFieldPadding),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: const Color(0xFFf3f3f3),
+                              color: const Color(0x0fffffff),
                               borderRadius: BorderRadius.circular(10)),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: confirmPassField,
-                          ),
+                          child: confirmPassField,
                         ),
                       ),
                       // ! Sign Up Button
@@ -407,7 +429,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsets.only(top: 16.0),
+                              padding: const EdgeInsets.only(top: 24.0),
                               child: signUpButton,
                             ),
                           ),

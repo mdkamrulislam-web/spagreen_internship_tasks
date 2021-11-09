@@ -28,9 +28,18 @@ class _LoginScreenState extends State<LoginScreen> {
     double textFormFieldPadding = 8;
     // ! Email Field
     final emailField = TextFormField(
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide.none,
+        ),
+
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        fillColor: const Color(0xFFf3f3f3),
+        filled: true,
+
         // prefixIcon: ,
-        border: InputBorder.none,
+
         hintText: 'Email',
       ),
       autofocus: false,
@@ -55,14 +64,26 @@ class _LoginScreenState extends State<LoginScreen> {
     final passwordField = TextFormField(
       obscureText: _isHidden,
       decoration: InputDecoration(
-        border: InputBorder.none,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide.none,
+        ),
+        contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+        fillColor: const Color(0xFFf3f3f3),
+        filled: true,
         hintText: 'Password',
-        suffix: Padding(
+        suffixIcon: Padding(
           padding: const EdgeInsets.only(right: 16.0),
           child: InkWell(
-            onTap: _togglePasswordVisibility,
+            onTap: () {
+              setState(() {
+                _isHidden = !_isHidden;
+              });
+            },
             child: Icon(
-              _isHidden ? Icons.visibility : Icons.visibility_off,
+              _isHidden ? Icons.visibility_off : Icons.visibility,
+              size: 20,
+              color: const Color(0xFF1cbb7c),
             ),
           ),
         ),
@@ -182,12 +203,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           EdgeInsets.symmetric(vertical: textFormFieldPadding),
                       child: Container(
                         decoration: BoxDecoration(
-                            color: const Color(0xFFf3f3f3),
+                            color: const Color(0x0fffffff),
                             borderRadius: BorderRadius.circular(10)),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 16.0),
-                          child: emailField,
-                        ),
+                        child: emailField,
                       ),
                     ),
                     // ! Password Field
@@ -196,12 +214,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           EdgeInsets.symmetric(vertical: textFormFieldPadding),
                       child: Container(
                         decoration: BoxDecoration(
-                            color: const Color(0xFFf3f3f3),
+                            color: const Color(0x0fffffff),
                             borderRadius: BorderRadius.circular(10)),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 16.0),
-                          child: passwordField,
-                        ),
+                        child: passwordField,
                       ),
                     ),
                     // ! Login Button
@@ -209,7 +224,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 16.0),
+                            padding: const EdgeInsets.only(top: 24.0),
                             child: loginButton,
                           ),
                         ),
@@ -269,9 +284,9 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  void _togglePasswordVisibility() {
-    setState(() {
-      _isHidden = !_isHidden;
-    });
-  }
+  // void _togglePasswordVisibility() {
+  //   setState(() {
+  //     _isHidden = !_isHidden;
+  //   });
+  // }
 }
