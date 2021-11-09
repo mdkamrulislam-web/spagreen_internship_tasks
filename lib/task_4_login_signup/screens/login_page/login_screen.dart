@@ -76,9 +76,10 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.only(right: 16.0),
           child: InkWell(
             onTap: () {
-              setState(() {
-                _isHidden = !_isHidden;
-              });
+              _togglePasswordVisibility();
+              // setState(() {
+              //   _isHidden = !_isHidden;
+              // });
             },
             child: Icon(
               _isHidden ? Icons.visibility_off : Icons.visibility,
@@ -170,108 +171,109 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Center(
-                child: Column(
-                  children: [
-                    Text(
-                      "Welcome",
-                      style: TextStyle(
-                          fontSize: size.width / 12,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "to Application",
-                      style: TextStyle(
-                          fontSize: size.width / 12,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.only(
+            left: 16.0, right: 16.0,
+            // top: 50
+          ),
+          child: SizedBox(
+            height: size.height,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Center(
+                  child: Column(
+                    children: const [
+                      Text(
+                        "Welcome",
+                        style: TextStyle(
+                            fontSize: 32, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        "to Application",
+                        style: TextStyle(
+                            fontSize: 32, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    // ! Email Field
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: textFormFieldPadding),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: const Color(0x0fffffff),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: emailField,
-                      ),
-                    ),
-                    // ! Password Field
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: textFormFieldPadding),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: const Color(0x0fffffff),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: passwordField,
-                      ),
-                    ),
-                    // ! Login Button
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 24.0),
-                            child: loginButton,
-                          ),
+
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      // ! Email Field
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: textFormFieldPadding),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: const Color(0x0fffffff),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: emailField,
                         ),
-                      ],
-                    ),
-                    // ! Forget Password
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            // ignore: avoid_print
-                            print("Showing Forgot Password Options");
-                            Navigator.pushNamed(
-                                context, ForgotPasswordScreen.id);
-                          });
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.only(top: 16.0),
-                          child: Text(
-                            "Forgot password?",
-                            style: TextStyle(
-                              color: Color(0xFF1cbb7c),
-                              fontWeight: FontWeight.bold,
+                      ),
+                      // ! Password Field
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: textFormFieldPadding),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: const Color(0x0fffffff),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: passwordField,
+                        ),
+                      ),
+                      // ! Login Button
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 24.0),
+                              child: loginButton,
+                            ),
+                          ),
+                        ],
+                      ),
+                      // ! Forget Password
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              // ignore: avoid_print
+                              print("Showing Forgot Password Options");
+                              Navigator.pushNamed(
+                                  context, ForgotPasswordScreen.id);
+                            });
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.only(top: 16.0),
+                            child: Text(
+                              "Forgot password?",
+                              style: TextStyle(
+                                color: Color(0xFF1cbb7c),
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              // ! Sign Up Button
-              Padding(
-                padding: const EdgeInsets.only(bottom: 40.0),
-                child: Row(
+                const SizedBox(),
+                // ! Sign Up Button
+                Row(
                   children: [
                     Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 16.0),
-                        child: signUpButton,
-                      ),
+                      child: signUpButton,
                     ),
                   ],
                 ),
-              ),
-            ],
+                const SizedBox(),
+              ],
+            ),
           ),
         ),
       ),
@@ -284,9 +286,9 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  // void _togglePasswordVisibility() {
-  //   setState(() {
-  //     _isHidden = !_isHidden;
-  //   });
-  // }
+  void _togglePasswordVisibility() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
 }

@@ -17,10 +17,14 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  // *Importing Image or Taking Image
+  // * Password Visibility Initialization
+  bool _isHidden = true;
+  bool _isConPassHidden = true;
+
+  // * Importing Image or Taking Image
   XFile? _image;
 
-  // *Form Key
+  // * Form Key
   final _formKey = GlobalKey<FormState>();
 
   // * Editing Controller
@@ -126,7 +130,7 @@ class _SignupScreenState extends State<SignupScreen> {
     );
     // ! Password Field
     final passwordField = TextFormField(
-      obscureText: true,
+      obscureText: _isHidden,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -136,6 +140,21 @@ class _SignupScreenState extends State<SignupScreen> {
         fillColor: const Color(0xFFf3f3f3),
         filled: true,
         hintText: 'Password',
+        suffixIcon: Padding(
+          padding: const EdgeInsets.only(right: 16.0),
+          child: InkWell(
+            onTap: () {
+              setState(() {
+                _isHidden = !_isHidden;
+              });
+            },
+            child: Icon(
+              _isHidden ? Icons.visibility_off : Icons.visibility,
+              size: 20,
+              color: const Color(0xFF1cbb7c),
+            ),
+          ),
+        ),
       ),
       autofocus: false,
       controller: passwordController,
@@ -156,7 +175,7 @@ class _SignupScreenState extends State<SignupScreen> {
     );
     // ! Confrim Password Field
     final confirmPassField = TextFormField(
-      obscureText: true,
+      obscureText: _isConPassHidden,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -166,6 +185,21 @@ class _SignupScreenState extends State<SignupScreen> {
         fillColor: const Color(0xFFf3f3f3),
         filled: true,
         hintText: 'Confirm Password',
+        suffixIcon: Padding(
+          padding: const EdgeInsets.only(right: 16.0),
+          child: InkWell(
+            onTap: () {
+              setState(() {
+                _isConPassHidden = !_isConPassHidden;
+              });
+            },
+            child: Icon(
+              _isConPassHidden ? Icons.visibility_off : Icons.visibility,
+              size: 20,
+              color: const Color(0xFF1cbb7c),
+            ),
+          ),
+        ),
       ),
       autofocus: false,
       controller: confirmPassController,
@@ -437,7 +471,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       // ! Terms & Conditions
                       Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
+                        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
