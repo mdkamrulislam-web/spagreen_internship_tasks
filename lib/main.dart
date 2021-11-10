@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:login_signup_page_flutter/contents.dart';
 import 'package:login_signup_page_flutter/task_4_login_signup/screens/home_screen.dart';
 import 'package:login_signup_page_flutter/task_4_login_signup/screens/login_page/forgot_password_screen.dart';
 import 'package:login_signup_page_flutter/task_4_login_signup/screens/login_page/login_screen.dart';
@@ -24,8 +25,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: LoginScreen.id,
+      initialRoute: InternshipTasks.id,
       routes: {
+        InternshipTasks.id: (context) => const InternshipTasks(),
         LoginScreen.id: (context) => const LoginScreen(),
         ForgotPasswordScreen.id: (context) => const ForgotPasswordScreen(),
         SignupScreen.id: (context) => const SignupScreen(),
