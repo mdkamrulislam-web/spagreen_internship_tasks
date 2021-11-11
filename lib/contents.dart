@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login_signup_page_flutter/task_4_login_signup/screens/login_page/login_screen.dart';
+import 'package:login_signup_page_flutter/task_1_card_design/cards_list.dart';
+import 'package:login_signup_page_flutter/task_4_&_taks_6/screens/login_page/login_screen.dart';
 
 class InternshipTasks extends StatefulWidget {
   const InternshipTasks({Key? key}) : super(key: key);
@@ -25,7 +26,9 @@ class _InternshipTasksState extends State<InternshipTasks> {
                   style: Theme.of(context).textTheme.headline2!,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, CardsList.id);
+                  },
                   child: const Padding(
                     padding: EdgeInsets.all(20.0),
                     child: Text(
