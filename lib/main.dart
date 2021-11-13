@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:login_signup_page_flutter/contents.dart';
+import 'package:login_signup_page_flutter/chapters.dart';
+import 'package:login_signup_page_flutter/design_tasks.dart';
 import 'package:login_signup_page_flutter/task_1_card_design/cards_list.dart';
 import 'package:login_signup_page_flutter/task_4_&_task_6/screens/home_screen.dart';
 import 'package:login_signup_page_flutter/task_1_card_design/restaurant_card_design.dart';
@@ -32,10 +33,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: InternshipTasks.id,
+      initialRoute: ChapterList.id,
       routes: {
+        // ! Chapter Page
+        ChapterList.id: (context) => const ChapterList(),
+
         // ! Index Page
-        InternshipTasks.id: (context) => const InternshipTasks(),
+        DesignTasks.id: (context) => const DesignTasks(),
 
         // ! Task 1 - Card Design
         CardsList.id: (context) => const CardsList(),
@@ -52,7 +56,8 @@ class MyApp extends StatelessWidget {
         TermsConditionsScreen.id: (context) => const TermsConditionsScreen(),
         PhoneNumberScreen.id: (context) => const PhoneNumberScreen(),
         SecureCodeScreen.id: (context) => const SecureCodeScreen(),
-        PasscodeScreen.id: (context) => const PasscodeScreen(userPasscode: ''),
+        PasscodeScreen.id: (context) =>
+            const PasscodeScreen(userPasscode: '1234'),
         HomeScreen.id: (context) => const HomeScreen(),
       },
       title: 'Login Signup Demo',

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:animator/animator.dart';
 import 'package:login_signup_page_flutter/task_4_&_task_6/const.dart' as cons;
 import 'package:login_signup_page_flutter/task_4_&_task_6/models/display_data.dart';
+import 'package:login_signup_page_flutter/task_4_&_task_6/screens/home_screen.dart';
 import 'package:login_signup_page_flutter/task_4_&_task_6/widgets/background_widget.dart';
 import 'package:login_signup_page_flutter/task_4_&_task_6/widgets/numpad_widget.dart';
 
@@ -17,10 +18,15 @@ class PasscodeScreen extends StatefulWidget {
 }
 
 class _PasscodeScreenState extends State<PasscodeScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   bool? isShowNumpad = false;
   late AnimationController logoController;
   late Animation<Offset> logoOffset;
+
+  AnimationController? dotController;
+  late Animation<double> dotAnimation;
+
+  String inputPasscode = '';
 
   @override
   void initState() {
@@ -28,7 +34,7 @@ class _PasscodeScreenState extends State<PasscodeScreen>
     logoController = AnimationController(
       vsync: this,
       duration: const Duration(
-        microseconds: 6000,
+        milliseconds: 600,
       ),
     );
     logoOffset = Tween<Offset>(
@@ -40,6 +46,20 @@ class _PasscodeScreenState extends State<PasscodeScreen>
         curve: Curves.easeInOutExpo,
       ),
     );
+    dotController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    dotAnimation = Tween(begin: 0.0, end: 24.0)
+        .chain(
+          CurveTween(curve: Curves.elasticIn),
+        )
+        .animate(dotController!);
+    dotAnimation.addStatusListener(_showDotShake);
+  }
+
+  void _showDotShake(AnimationStatus aAnimationStatus) {
+    if (aAnimationStatus == AnimationStatus.completed) dotController!.reverse();
   }
 
   Widget logoWidget() {
@@ -90,6 +110,159 @@ class _PasscodeScreenState extends State<PasscodeScreen>
     super.dispose();
   }
 
+  List<Widget> _buildDotList() {
+    var doList = <Widget>[];
+    for (int i = 0; i < widget.userPasscode!.length; i++) {
+      doList.add(
+        Container(
+          margin: EdgeInsets.all(6.0),
+          alignment: Alignment.center,
+          child: PasscodeDot(
+            filled: i < this.inputPasscode.length,
+          ),
+        ),
+      );
+    }
+    return doList;
+  }
+
+  Widget _buildPasscodeDotWidget() {
+    return AnimatedBuilder(
+        animation: dotAnimation,
+        builder: (context, _) {
+          return Container(
+            margin: EdgeInsets.symmetric(horizontal: 24.0),
+            padding: EdgeInsets.only(left: 5, right: 5),
+            child: Container(
+              height: 30.0,
+              margin: EdgeInsets.symmetric(vertical: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: _buildDotList(),
+              ),
+            ),
+          );
+        });
+  }
+
+  Widget _showInputWidget(Widget aWidget) {
+    return Animator(
+      tweenMap: {
+        'opacity': Tween<double>(begin: -3.0, end: 1.0),
+        'motion': Tween<Offset>(
+          begin: Offset(0, 80.0),
+          end: Offset(0, 0),
+        ),
+      },
+      curve: Curves.easeInOut,
+      duration: Duration(milliseconds: 800),
+      cycles: 1,
+      builder: (_, anim, __) => FadeTransition(
+        opacity: anim.getAnimation('opacity'),
+        child: Transform.translate(
+          offset: anim.getValue('motion'),
+          child: aWidget,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInputWidgets() {
+    return _showInputWidget(
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: displayWidth()! * 0.30,
+          ),
+          Container(
+            child: _buildPasscodeDotWidget(),
+          ),
+          Container(
+            width: displayWidth()! * 0.8,
+            child: NumpadWidget(
+              onNumpadTap: _doOnNumpadTap,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _doOnNumpadTap(NumpadData aNumpad) {
+    if (aNumpad == NumpadData.delete)
+      _deletePasscode();
+    else {
+      _insertPasscode('${aNumpad.index}');
+    }
+  }
+
+  void _deletePasscode() {
+    if (this.inputPasscode.length > 0) {
+      setState(() {
+        this.inputPasscode =
+            this.inputPasscode.substring(0, this.inputPasscode.length - 1);
+      });
+    }
+  }
+
+  void _insertPasscode(String aInputNumber) {
+    setState(() {
+      if (this.inputPasscode.length < widget.userPasscode!.length) {
+        this.inputPasscode += aInputNumber;
+      }
+    });
+    if (this.inputPasscode.length == widget.userPasscode!.length)
+      _verifyPasscode();
+  }
+
+  void _verifyPasscode() {
+    if (this.inputPasscode != widget.userPasscode) {
+      _shakeAndReset();
+      ScaffoldMessenger.of(this.context)
+          .showSnackBar(_snackBar("Incorrect Password!"));
+    } else {
+      Navigator.pushNamed(context, HomeScreen.id);
+      ScaffoldMessenger.of(this.context)
+          .showSnackBar(_snackBar("Correct Password!"));
+      Future.delayed(Duration(seconds: 4)).then((value) => _resetPasscode());
+    }
+  }
+
+  void _resetPasscode() {
+    setState(() {
+      this.inputPasscode = '';
+    });
+  }
+
+  void _shakeAndReset() {
+    dotController!.forward().then((_) {
+      _resetPasscode();
+    });
+  }
+
+  SnackBar _snackBar(String x) {
+    final resultSnackBar = SnackBar(
+      content: Container(
+        padding: EdgeInsets.all(2),
+        child: Text(
+          x,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            height: 1.0,
+          ),
+        ),
+      ),
+      backgroundColor: Colors.blueAccent,
+      behavior: SnackBarBehavior.floating,
+      elevation: 10.0,
+      margin: EdgeInsets.all(6),
+      duration: Duration(seconds: 3),
+    );
+    return resultSnackBar;
+  }
+
   @override
   Widget build(BuildContext context) {
     DisplayData().init(context);
@@ -107,17 +280,7 @@ class _PasscodeScreenState extends State<PasscodeScreen>
                 child: logoWidget(),
               ),
             ),
-            Column(
-              children: [
-                SizedBox(
-                  height: displayWidth()! * 0.30,
-                ),
-                Container(
-                  width: displayWidth()! * 0.8,
-                  child: NumpadWidget(onNumpadTap: null),
-                )
-              ],
-            )
+            if (isShowNumpad!) _buildInputWidgets() else SizedBox(),
           ],
         ),
       ),

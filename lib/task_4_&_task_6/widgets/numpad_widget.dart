@@ -50,7 +50,7 @@ class NumpadWidget extends StatelessWidget {
               child: (aNumpadData == NumpadData.delete)
                   ? Icon(
                       Icons.arrow_back,
-                      color: Colors.amber,
+                      color: Colors.red,
                       size: 34,
                     )
                   : Container(
@@ -109,10 +109,29 @@ class NumpadWidget extends StatelessWidget {
 }
 
 class PasscodeDot extends StatelessWidget {
-  const PasscodeDot({Key? key}) : super(key: key);
+  final double dotSize = 14;
+  final bool filled;
+  final double shakeOffset = 0;
+
+  const PasscodeDot({Key? key, required this.filled}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      margin: EdgeInsets.only(right: shakeOffset),
+      width: dotSize,
+      height: dotSize,
+      decoration: BoxDecoration(
+        boxShadow: const [
+          BoxShadow(
+              blurRadius: 3.0,
+              color: Colors.black26,
+              offset: Offset(3.0, 3.0),
+              spreadRadius: 1.0),
+        ],
+        borderRadius: BorderRadius.circular(14),
+        color: (filled) ? Colors.amber : Colors.red,
+      ),
+    );
   }
 }

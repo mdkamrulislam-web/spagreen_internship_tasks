@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:login_signup_page_flutter/task_1_card_design/cards_list.dart';
 import 'package:login_signup_page_flutter/task_4_&_task_6/screens/login_page/login_screen.dart';
 
-class InternshipTasks extends StatefulWidget {
-  const InternshipTasks({Key? key}) : super(key: key);
+class DesignTasks extends StatefulWidget {
+  const DesignTasks({Key? key}) : super(key: key);
   static const String id = "content_screen";
   @override
-  _InternshipTasksState createState() => _InternshipTasksState();
+  _DesignTasksState createState() => _DesignTasksState();
 }
 
-class _InternshipTasksState extends State<InternshipTasks> {
+class _DesignTasksState extends State<DesignTasks> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

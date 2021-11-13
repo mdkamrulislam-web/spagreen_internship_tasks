@@ -239,7 +239,6 @@ class _PhoneNumberScreenState extends State<SecureCodeScreen> {
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,
-              // const BorderSide(width: 2, color: Colors.black),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
