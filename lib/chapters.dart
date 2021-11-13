@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login_signup_page_flutter/design_tasks.dart';
+import 'package:login_signup_page_flutter/back_end_tasks/back_end_tasks_contents.dart';
+import 'package:login_signup_page_flutter/design_tasks/design_tasks.dart';
 
 class ChapterList extends StatelessWidget {
   static const String id = "chapter_screen";
@@ -11,14 +12,14 @@ class ChapterList extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Text(
               'Chapters',
               style: Theme.of(context).textTheme.headline2,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ElevatedButton(
@@ -27,17 +28,19 @@ class ChapterList extends StatelessWidget {
               },
               child: Text(
                 'Design',
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headline5,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, BackEndTasks.id);
+              },
               child: Text(
                 'Back-end',
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headline5,
               ),
             ),
           ],

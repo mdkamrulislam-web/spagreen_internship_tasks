@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:login_signup_page_flutter/back_end_tasks/back_end_tasks_contents.dart';
+import 'package:login_signup_page_flutter/back_end_tasks/simple_list_data_call_task1/simple_list_data_call.dart';
 import 'package:login_signup_page_flutter/chapters.dart';
-import 'package:login_signup_page_flutter/design_tasks.dart';
-import 'package:login_signup_page_flutter/task_1_card_design/cards_list.dart';
-import 'package:login_signup_page_flutter/task_4_&_task_6/screens/home_screen.dart';
-import 'package:login_signup_page_flutter/task_1_card_design/restaurant_card_design.dart';
-import 'package:login_signup_page_flutter/task_1_card_design/datamodels/restarunt_model.dart';
-import 'package:login_signup_page_flutter/task_4_&_task_6/screens/login_page/login_screen.dart';
-import 'package:login_signup_page_flutter/task_4_&_task_6/screens/passcode_page/passcode_screen.dart';
-import 'package:login_signup_page_flutter/task_4_&_task_6/screens/signup_page/info_screen.dart';
-import 'package:login_signup_page_flutter/task_4_&_task_6/screens/signup_page/signup_screen.dart';
-// import 'package:login_signup_page_flutter/task_4_&_taks_6/screens/passcode_page/passcode_screen.dart';
-import 'package:login_signup_page_flutter/task_4_&_task_6/screens/login_page/forgot_password_screen.dart';
-import 'package:login_signup_page_flutter/task_4_&_task_6/screens/signup_page/terms_conditions_screen.dart';
-import 'package:login_signup_page_flutter/task_4_&_task_6/screens/secure_code_page/secure_code_screen.dart';
-import 'package:login_signup_page_flutter/task_4_&_task_6/screens/phone_number_page/phone_number_screen.dart';
+import 'package:login_signup_page_flutter/design_tasks/design_tasks.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_1_card_design/cards_list.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/home_screen.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_1_card_design/restaurant_card_design.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_1_card_design/datamodels/restarunt_model.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/login_page/login_screen.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/passcode_page/passcode_screen.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/signup_page/info_screen.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/signup_page/signup_screen.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/login_page/forgot_password_screen.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/signup_page/terms_conditions_screen.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/secure_code_page/secure_code_screen.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/phone_number_page/phone_number_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         // ! Chapter Page
         ChapterList.id: (context) => const ChapterList(),
 
-        // ! Index Page
+        // ! Design Tasks
         DesignTasks.id: (context) => const DesignTasks(),
 
         // ! Task 1 - Card Design
@@ -59,6 +60,12 @@ class MyApp extends StatelessWidget {
         PasscodeScreen.id: (context) =>
             const PasscodeScreen(userPasscode: '1234'),
         HomeScreen.id: (context) => const HomeScreen(),
+
+        // ! Back-end Tasks
+        BackEndTasks.id: (context) => const BackEndTasks(),
+
+        // ! Task 1
+        SimpleListDataCall.id: (context) => const SimpleListDataCall(),
       },
       title: 'Login Signup Demo',
     );
