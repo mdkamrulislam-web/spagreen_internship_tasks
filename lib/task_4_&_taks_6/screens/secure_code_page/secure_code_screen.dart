@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login_signup_page_flutter/task_4_&_taks_6/screens/passcode_page/passcode_screen.dart';
 import 'package:login_signup_page_flutter/task_4_&_taks_6/screens/signup_page/info_screen.dart';
+import 'package:login_signup_page_flutter/task_4_&_taks_6/screens/passcode_page/passcode_screen.dart';
 import 'package:login_signup_page_flutter/task_4_&_taks_6/screens/signup_page/terms_conditions_screen.dart';
 
 class SecureCodeScreen extends StatefulWidget {
