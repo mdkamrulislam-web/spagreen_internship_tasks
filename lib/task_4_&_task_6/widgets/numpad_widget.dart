@@ -1,6 +1,6 @@
+// ignore_for_file: unnecessary_this
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:login_signup_page_flutter/task_4_&_task_6/const.dart' as cons;
 import 'package:login_signup_page_flutter/task_4_&_task_6/models/display_data.dart';
 
 enum NumpadData {
@@ -38,9 +38,9 @@ class NumpadWidget extends StatelessWidget {
 
   Widget? _buildButton(NumpadData aNumpadData) {
     return Container(
-      margin: EdgeInsets.all(4),
+      margin: const EdgeInsets.all(4),
       child: (aNumpadData == NumpadData.space)
-          ? SizedBox()
+          ? const SizedBox()
           : FloatingActionButton(
               onPressed: () {
                 if (this.onNumpadTap != null) this.onNumpadTap!(aNumpadData);
@@ -48,7 +48,7 @@ class NumpadWidget extends StatelessWidget {
               backgroundColor: Colors.amber,
               splashColor: Colors.greenAccent,
               child: (aNumpadData == NumpadData.delete)
-                  ? Icon(
+                  ? const Icon(
                       Icons.arrow_back,
                       color: Colors.red,
                       size: 34,
@@ -57,7 +57,7 @@ class NumpadWidget extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Text(
                         '${aNumpadData.index}',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.red,
                           fontWeight: FontWeight.bold,
                           fontSize: 40,
@@ -70,9 +70,9 @@ class NumpadWidget extends StatelessWidget {
   }
 
   Widget? _buildNumpadGrid(List<NumpadData> aNumList) {
-    final double runSpacing = 12;
-    final double spacing = 12;
-    final columnCount = 3;
+    const double runSpacing = 12;
+    const double spacing = 12;
+    const columnCount = 3;
     final keyboardSize = displayWidth()! * 0.65;
     final buttonSize =
         (keyboardSize - spacing * (columnCount - 1)) / columnCount;
@@ -82,7 +82,7 @@ class NumpadWidget extends StatelessWidget {
       runAlignment: WrapAlignment.center,
       children: List.generate(
         aNumList.length,
-        (index) => Container(
+        (index) => SizedBox(
           width: buttonSize,
           height: buttonSize,
           child: _buildButton(aNumList[index]),
@@ -95,15 +95,13 @@ class NumpadWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            child: _buildNumpadGrid(_numpadList),
-          ),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          child: _buildNumpadGrid(_numpadList),
+        ),
+      ],
     );
   }
 }
