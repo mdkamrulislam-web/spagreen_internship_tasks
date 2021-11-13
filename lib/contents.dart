@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_signup_page_flutter/task_1_card_design/cards_list.dart';
-import 'package:login_signup_page_flutter/task_4_&_taks_6/screens/login_page/login_screen.dart';
+import 'package:login_signup_page_flutter/task_4_&_task_6/screens/login_page/login_screen.dart';
 
 class InternshipTasks extends StatefulWidget {
   const InternshipTasks({Key? key}) : super(key: key);

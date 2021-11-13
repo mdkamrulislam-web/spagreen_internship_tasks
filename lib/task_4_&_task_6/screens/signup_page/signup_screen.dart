@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:login_signup_page_flutter/task_4_&_taks_6/screens/phone_number_page/phone_number_screen.dart';
-import 'package:login_signup_page_flutter/task_4_&_taks_6/screens/signup_page/terms_conditions_screen.dart';
+import 'package:login_signup_page_flutter/task_4_&_task_6/screens/phone_number_page/phone_number_screen.dart';
+import 'package:login_signup_page_flutter/task_4_&_task_6/screens/signup_page/terms_conditions_screen.dart';
 import 'info_screen.dart';
 
 class SignupScreen extends StatefulWidget {

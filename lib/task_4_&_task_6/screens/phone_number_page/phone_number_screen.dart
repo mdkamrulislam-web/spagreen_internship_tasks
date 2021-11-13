@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:login_signup_page_flutter/task_4_&_taks_6/screens/secure_code_page/secure_code_screen.dart';
-import 'package:login_signup_page_flutter/task_4_&_taks_6/screens/signup_page/info_screen.dart';
-import 'package:login_signup_page_flutter/task_4_&_taks_6/screens/signup_page/terms_conditions_screen.dart';
+import 'package:login_signup_page_flutter/task_4_&_task_6/screens/signup_page/info_screen.dart';
+import 'package:login_signup_page_flutter/task_4_&_task_6/screens/secure_code_page/secure_code_screen.dart';
+import 'package:login_signup_page_flutter/task_4_&_task_6/screens/signup_page/terms_conditions_screen.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({Key? key}) : super(key: key);

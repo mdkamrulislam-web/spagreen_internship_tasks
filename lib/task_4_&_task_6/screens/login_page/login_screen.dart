@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:login_signup_page_flutter/task_4_&_taks_6/screens/login_page/forgot_password_screen.dart';
-import 'package:login_signup_page_flutter/task_4_&_taks_6/screens/phone_number_page/phone_number_screen.dart';
-import 'package:login_signup_page_flutter/task_4_&_taks_6/screens/signup_page/signup_screen.dart';
+import 'package:login_signup_page_flutter/task_4_&_task_6/screens/signup_page/signup_screen.dart';
+import 'package:login_signup_page_flutter/task_4_&_task_6/screens/login_page/forgot_password_screen.dart';
+import 'package:login_signup_page_flutter/task_4_&_task_6/screens/phone_number_page/phone_number_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
