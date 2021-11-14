@@ -37,7 +37,7 @@ class _SimpleListDataCallState extends State<SimpleListDataCall> {
                           children: [
                             Text(
                               '${foods[index]}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 24,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w900),
