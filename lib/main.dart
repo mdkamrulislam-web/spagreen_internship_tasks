@@ -34,7 +34,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: ChapterList.id,
+      initialRoute: LoginScreen.id,
+      // ChapterList.id,
       routes: {
         // ! Chapter Page
         ChapterList.id: (context) => const ChapterList(),

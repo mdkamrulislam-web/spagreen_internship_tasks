@@ -28,18 +28,46 @@ class _LoginScreenState extends State<LoginScreen> {
     // ! Email Field
     final emailField = TextFormField(
       decoration: InputDecoration(
+        labelText: "Email",
+        floatingLabelStyle: const TextStyle(
+          color: Color(0xFF1cbb7c),
+          fontWeight: FontWeight.w600,
+        ),
+        labelStyle: TextStyle(
+          color: Colors.grey.shade500,
+          fontWeight: FontWeight.w600,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(
+            width: 2,
+            color: Color(0xFF1cbb7c),
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(
+            width: 1,
+            color: const Color(0xFF1cbb7c).withOpacity(0.4),
+          ),
+        ),
+
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
         ),
-
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         fillColor: const Color(0xFFf3f3f3),
         filled: true,
-
-        // prefixIcon: ,
-
-        hintText: 'Email',
+        prefixIcon: const Icon(
+          Icons.email,
+          color: Color(0xFF1cbb7c),
+        ),
+        // hintText: 'Email',
+        // hintStyle: TextStyle(
+        //   color: Colors.grey.shade500,
+        //   fontWeight: FontWeight.w600,
+        // ),
       ),
       autofocus: false,
       controller: emailController,
@@ -63,6 +91,29 @@ class _LoginScreenState extends State<LoginScreen> {
     final passwordField = TextFormField(
       obscureText: _isHidden,
       decoration: InputDecoration(
+        labelText: "Password",
+        floatingLabelStyle: const TextStyle(
+          color: Color(0xFF1cbb7c),
+          fontWeight: FontWeight.w600,
+        ),
+        labelStyle: TextStyle(
+          color: Colors.grey.shade500,
+          fontWeight: FontWeight.w600,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(
+            width: 2,
+            color: Color(0xFF1cbb7c),
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(
+            width: 1,
+            color: const Color(0xFF1cbb7c).withOpacity(0.4),
+          ),
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
@@ -70,15 +121,15 @@ class _LoginScreenState extends State<LoginScreen> {
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         fillColor: const Color(0xFFf3f3f3),
         filled: true,
-        hintText: 'Password',
+        prefixIcon: const Icon(
+          Icons.password_sharp,
+          color: Color(0xFF1cbb7c),
+        ),
         suffixIcon: Padding(
           padding: const EdgeInsets.only(right: 16.0),
           child: InkWell(
             onTap: () {
               _togglePasswordVisibility();
-              // setState(() {
-              //   _isHidden = !_isHidden;
-              // });
             },
             child: Icon(
               _isHidden ? Icons.visibility_off : Icons.visibility,
