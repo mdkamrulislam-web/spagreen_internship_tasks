@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/constants/firebase_auth_constants.dart';
-import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/home_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/login_page/forgot_password_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/signup_page/signup_screen.dart';
 

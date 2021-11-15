@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/constants/firebase_auth_constants.dart';
-import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/home_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/signup_page/terms_conditions_screen.dart';
 import 'info_screen.dart';
 
@@ -331,6 +330,44 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
 
+    // ! Sign Up with Google Button
+    final signUpWithGoogleButton = ElevatedButton(
+      onPressed: () {
+        authController.signInWithGoogle();
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text(
+              "Sign Up With Google",
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Image(
+              height: 20,
+              image: AssetImage(
+                "assets/images/google.png",
+              ),
+            ),
+          ],
+        ),
+      ),
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        backgroundColor: MaterialStateProperty.all(
+          const Color(0xFF899cad).withOpacity(0.4),
+        ),
+      ),
+    );
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -475,7 +512,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
               SizedBox(
-                height: size.height / 30,
+                height: size.height / 60,
               ),
               // ? Signup Form
               Form(
@@ -549,6 +586,11 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                           ),
                         ],
+                      ),
+                      // ! Sign Up With Google Button
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: signUpWithGoogleButton,
                       ),
                       // ! Terms & Conditions
                       Padding(
