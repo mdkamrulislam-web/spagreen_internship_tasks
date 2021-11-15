@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/phone_number_page/phone_number_screen.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/constants/firebase_auth_constants.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/home_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/signup_page/terms_conditions_screen.dart';
 import 'info_screen.dart';
 
@@ -40,7 +41,24 @@ class _SignupScreenState extends State<SignupScreen> {
     double textFormFieldPadding = 8;
     // ! First Name Field
     final firstNameField = TextFormField(
+      cursorColor: const Color(0xFF1cbb7c),
       decoration: InputDecoration(
+        labelText: "First Name",
+        floatingLabelStyle: const TextStyle(
+          color: Color(0xFF1cbb7c),
+          fontWeight: FontWeight.w600,
+        ),
+        labelStyle: TextStyle(
+          color: Colors.grey.shade500,
+          fontWeight: FontWeight.w600,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(
+            width: 2,
+            color: Color(0xFF1cbb7c),
+          ),
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
@@ -48,7 +66,6 @@ class _SignupScreenState extends State<SignupScreen> {
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         fillColor: const Color(0xFFf3f3f3),
         filled: true,
-        hintText: "First Name",
       ),
       autofocus: false,
       controller: firstNameController,
@@ -70,7 +87,24 @@ class _SignupScreenState extends State<SignupScreen> {
     );
     // ! Last Name Field
     final lastNameField = TextFormField(
+      cursorColor: const Color(0xFF1cbb7c),
       decoration: InputDecoration(
+        labelText: "Last Name",
+        floatingLabelStyle: const TextStyle(
+          color: Color(0xFF1cbb7c),
+          fontWeight: FontWeight.w600,
+        ),
+        labelStyle: TextStyle(
+          color: Colors.grey.shade500,
+          fontWeight: FontWeight.w600,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(
+            width: 2,
+            color: Color(0xFF1cbb7c),
+          ),
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
@@ -78,7 +112,6 @@ class _SignupScreenState extends State<SignupScreen> {
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         fillColor: const Color(0xFFf3f3f3),
         filled: true,
-        hintText: 'Last Name',
       ),
       autofocus: false,
       controller: lastNameController,
@@ -100,7 +133,24 @@ class _SignupScreenState extends State<SignupScreen> {
     );
     // ! Email Field
     final emailField = TextFormField(
+      cursorColor: const Color(0xFF1cbb7c),
       decoration: InputDecoration(
+        labelText: "Email",
+        floatingLabelStyle: const TextStyle(
+          color: Color(0xFF1cbb7c),
+          fontWeight: FontWeight.w600,
+        ),
+        labelStyle: TextStyle(
+          color: Colors.grey.shade500,
+          fontWeight: FontWeight.w600,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(
+            width: 2,
+            color: Color(0xFF1cbb7c),
+          ),
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
@@ -108,7 +158,6 @@ class _SignupScreenState extends State<SignupScreen> {
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         fillColor: const Color(0xFFf3f3f3),
         filled: true,
-        hintText: 'Email',
       ),
       autofocus: false,
       controller: emailController,
@@ -130,8 +179,25 @@ class _SignupScreenState extends State<SignupScreen> {
     );
     // ! Password Field
     final passwordField = TextFormField(
+      cursorColor: const Color(0xFF1cbb7c),
       obscureText: _isHidden,
       decoration: InputDecoration(
+        labelText: "Password",
+        floatingLabelStyle: const TextStyle(
+          color: Color(0xFF1cbb7c),
+          fontWeight: FontWeight.w600,
+        ),
+        labelStyle: TextStyle(
+          color: Colors.grey.shade500,
+          fontWeight: FontWeight.w600,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(
+            width: 2,
+            color: Color(0xFF1cbb7c),
+          ),
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
@@ -139,7 +205,6 @@ class _SignupScreenState extends State<SignupScreen> {
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         fillColor: const Color(0xFFf3f3f3),
         filled: true,
-        hintText: 'Password',
         suffixIcon: Padding(
           padding: const EdgeInsets.only(right: 16.0),
           child: InkWell(
@@ -175,8 +240,25 @@ class _SignupScreenState extends State<SignupScreen> {
     );
     // ! Confrim Password Field
     final confirmPassField = TextFormField(
+      cursorColor: const Color(0xFF1cbb7c),
       obscureText: _isConPassHidden,
       decoration: InputDecoration(
+        labelText: "Confirm Password",
+        floatingLabelStyle: const TextStyle(
+          color: Color(0xFF1cbb7c),
+          fontWeight: FontWeight.w600,
+        ),
+        labelStyle: TextStyle(
+          color: Colors.grey.shade500,
+          fontWeight: FontWeight.w600,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(
+            width: 2,
+            color: Color(0xFF1cbb7c),
+          ),
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
@@ -184,7 +266,6 @@ class _SignupScreenState extends State<SignupScreen> {
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         fillColor: const Color(0xFFf3f3f3),
         filled: true,
-        hintText: 'Confirm Password',
         suffixIcon: Padding(
           padding: const EdgeInsets.only(right: 16.0),
           child: InkWell(
@@ -217,11 +298,12 @@ class _SignupScreenState extends State<SignupScreen> {
     // ! Sign Up Button
     final signUpButton = ElevatedButton(
       onPressed: () {
-        // ignore: avoid_print
-        print("Signing Up!");
-
         if (_formKey.currentState!.validate()) {
-          signUp(emailController.text, passwordController.text);
+          // signUp(emailController.text, passwordController.text);
+          authController.register(
+            emailController.text.trim(),
+            passwordController.text.trim(),
+          );
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               duration: Duration(seconds: 2),
@@ -560,9 +642,9 @@ class _SignupScreenState extends State<SignupScreen> {
     }
   }
 
-  void signUp(String email, String password) {
-    if (_formKey.currentState!.validate()) {
-      Navigator.pushNamed(context, PhoneNumberScreen.id);
-    }
-  }
+  // void signUp(String email, String password) {
+  //   if (_formKey.currentState!.validate()) {
+  //     Navigator.pushNamed(context, HomeScreen.id);
+  //   }
+  // }
 }

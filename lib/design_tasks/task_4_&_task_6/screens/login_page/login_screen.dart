@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/constants/firebase_auth_constants.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/home_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/login_page/forgot_password_screen.dart';
-import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/phone_number_page/phone_number_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/signup_page/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -21,12 +22,14 @@ class _LoginScreenState extends State<LoginScreen> {
   // * Editing Controller
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     double textFormFieldPadding = 8;
     // ! Email Field
     final emailField = TextFormField(
+      cursorColor: const Color(0xFF1cbb7c),
       decoration: InputDecoration(
         labelText: "Email",
         floatingLabelStyle: const TextStyle(
@@ -44,13 +47,17 @@ class _LoginScreenState extends State<LoginScreen> {
             color: Color(0xFF1cbb7c),
           ),
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(
-            width: 1,
-            color: const Color(0xFF1cbb7c).withOpacity(0.4),
-          ),
-        ),
+        // enabledBorder: OutlineInputBorder(
+        //   borderRadius: BorderRadius.circular(10),
+        //   borderSide: BorderSide(
+        //     width: 1,
+        //     color: const Color(0xFF1cbb7c).withOpacity(0.4),
+        //   ),
+        // ),
+        // prefixIcon: const Icon(
+        //   Icons.email,
+        //   color: Color(0xFF1cbb7c),
+        // ),
 
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -59,15 +66,6 @@ class _LoginScreenState extends State<LoginScreen> {
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         fillColor: const Color(0xFFf3f3f3),
         filled: true,
-        prefixIcon: const Icon(
-          Icons.email,
-          color: Color(0xFF1cbb7c),
-        ),
-        // hintText: 'Email',
-        // hintStyle: TextStyle(
-        //   color: Colors.grey.shade500,
-        //   fontWeight: FontWeight.w600,
-        // ),
       ),
       autofocus: false,
       controller: emailController,
@@ -89,6 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
     // ! Password Field
     final passwordField = TextFormField(
+      cursorColor: const Color(0xFF1cbb7c),
       obscureText: _isHidden,
       decoration: InputDecoration(
         labelText: "Password",
@@ -107,13 +106,17 @@ class _LoginScreenState extends State<LoginScreen> {
             color: Color(0xFF1cbb7c),
           ),
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(
-            width: 1,
-            color: const Color(0xFF1cbb7c).withOpacity(0.4),
-          ),
-        ),
+        // enabledBorder: OutlineInputBorder(
+        //   borderRadius: BorderRadius.circular(10),
+        //   borderSide: BorderSide(
+        //     width: 1,
+        //     color: const Color(0xFF1cbb7c).withOpacity(0.4),
+        //   ),
+        // ),
+        // prefixIcon: const Icon(
+        //   Icons.password_sharp,
+        //   color: Color(0xFF1cbb7c),
+        // ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
@@ -121,10 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         fillColor: const Color(0xFFf3f3f3),
         filled: true,
-        prefixIcon: const Icon(
-          Icons.password_sharp,
-          color: Color(0xFF1cbb7c),
-        ),
+
         suffixIcon: Padding(
           padding: const EdgeInsets.only(right: 16.0),
           child: InkWell(
@@ -160,11 +160,12 @@ class _LoginScreenState extends State<LoginScreen> {
     // ! Login Button
     final loginButton = ElevatedButton(
       onPressed: () {
-        // ignore: avoid_print
-        print("Loging In!");
-
         if (_formKey.currentState!.validate()) {
-          logIn(emailController.text, passwordController.text);
+          // logIn(emailController.text, passwordController.text);
+          authController.login(
+            emailController.text.trim(),
+            passwordController.text.trim(),
+          );
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               duration: Duration(seconds: 2),
@@ -330,11 +331,11 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void logIn(String email, String password) {
-    if (_formKey.currentState!.validate()) {
-      Navigator.pushNamed(context, PhoneNumberScreen.id);
-    }
-  }
+  // void logIn(String email, String password) {
+  //   if (_formKey.currentState!.validate()) {
+  //     Navigator.pushNamed(context, HomeScreen.id);
+  //   }
+  // }
 
   void _togglePasswordVisibility() {
     setState(() {

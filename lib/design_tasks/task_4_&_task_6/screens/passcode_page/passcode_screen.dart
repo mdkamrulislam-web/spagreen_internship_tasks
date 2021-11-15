@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animator/animator.dart';
-import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/const.dart'
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/constants/const.dart'
     as cons;
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/models/display_data.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/home_screen.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
-import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/const.dart'
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/constants/const.dart'
     as cons;
 
 class BackgroundWidget extends StatelessWidget {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/constants/firebase_auth_constants.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -16,6 +17,14 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text("Welcome"),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              authController.logout();
+            },
+            icon: const Icon(Icons.logout),
+          ),
+        ],
       ),
       body: Center(
         child: Padding(
@@ -54,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ActionChip(
                 label: const Text('Logout'),
                 onPressed: () {
-                  Navigator.pop(context);
+                  // Navigator.pop(context);
                   // ignore: avoid_print
                   print('Logging Out');
                 },

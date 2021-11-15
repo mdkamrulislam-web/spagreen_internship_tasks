@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:login_signup_page_flutter/back_end_tasks/back_end_tasks_contents.dart';
 import 'package:login_signup_page_flutter/back_end_tasks/simple_list_data_call_task1/simple_list_data_call.dart';
 import 'package:login_signup_page_flutter/chapters.dart';
 import 'package:login_signup_page_flutter/design_tasks/design_tasks.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_1_card_design/cards_list.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/controllers/auth_controller.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/home_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_1_card_design/restaurant_card_design.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_1_card_design/datamodels/restarunt_model.dart';
@@ -17,7 +19,15 @@ import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/s
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/secure_code_page/secure_code_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/phone_number_page/phone_number_screen.dart';
 
-void main() {
+import 'design_tasks/task_4_&_task_6/constants/firebase_auth_constants.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await firebaseInitilization.then((value) {
+    Get.put(AuthController());
+  });
+
   runApp(const MyApp());
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -32,7 +42,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: LoginScreen.id,
       // ChapterList.id,

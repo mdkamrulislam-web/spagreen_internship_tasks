@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "371400031146",
+    "project_id": "test-project-8799c",
+    "storage_bucket": "test-project-8799c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371400031146:android:8e2e6c63c475ea63a909d3",
+        "android_client_info": {
+          "package_name": "com.example.login_signup_page_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "371400031146-71524rfhvme7jmitcmbak7jf820u0s4a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.login_signup_page_flutter",
+            "certificate_hash": "1a6f0619dfdb118159fbe2405db2c75c1267e00a"
+          }
+        },
+        {
+          "client_id": "371400031146-36se0b0h082pqa2jpqd5kg1u6eegdfu4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdPpx8vaHL2Wo6FgjkJrPxcvnSn4oMFvU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "371400031146-36se0b0h082pqa2jpqd5kg1u6eegdfu4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
