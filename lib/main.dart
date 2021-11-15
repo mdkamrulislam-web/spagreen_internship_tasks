@@ -77,6 +77,7 @@ class MyApp extends StatelessWidget {
         // ! Task 1
         SimpleListDataCall.id: (context) => const SimpleListDataCall(),
       },
+
       title: 'Login Signup Demo',
     );
   }

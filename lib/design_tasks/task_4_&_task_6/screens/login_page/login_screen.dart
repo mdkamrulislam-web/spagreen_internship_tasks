@@ -273,9 +273,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     children: const [
                       Padding(
-                        padding: EdgeInsets.only(top: 24.0),
+                        padding: EdgeInsets.only(top: 40.0),
                         child: Text(
-                          "Welcome",
+                          'Welcome',
                           style: TextStyle(
                               fontSize: 32, fontWeight: FontWeight.bold),
                         ),
