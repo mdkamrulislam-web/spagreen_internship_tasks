@@ -330,49 +330,11 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
 
-    // ! Sign Up with Google Button
-    final signUpWithGoogleButton = ElevatedButton(
-      onPressed: () {
-        authController.signInWithGoogle();
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text(
-              "Sign Up With Google",
-              style: TextStyle(fontSize: 18),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Image(
-              height: 20,
-              image: AssetImage(
-                "assets/images/google.png",
-              ),
-            ),
-          ],
-        ),
-      ),
-      style: ButtonStyle(
-        shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-        backgroundColor: MaterialStateProperty.all(
-          const Color(0xFF899cad).withOpacity(0.4),
-        ),
-      ),
-    );
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+          padding: const EdgeInsets.only(top: 16, left: 16.0, right: 16.0),
           child: ListView(
             // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -444,7 +406,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+                padding: const EdgeInsets.only(top: 16.0),
                 child: Text(
                   "Sign Up",
                   style: TextStyle(
@@ -587,11 +549,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                         ],
                       ),
-                      // ! Sign Up With Google Button
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: signUpWithGoogleButton,
-                      ),
+
                       // ! Terms & Conditions
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),

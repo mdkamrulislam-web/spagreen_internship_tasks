@@ -18,7 +18,6 @@ import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/l
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/signup_page/terms_conditions_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/secure_code_page/secure_code_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/phone_number_page/phone_number_screen.dart';
-
 import 'design_tasks/task_4_&_task_6/constants/firebase_auth_constants.dart';
 
 Future<void> main() async {
@@ -31,7 +30,7 @@ Future<void> main() async {
   runApp(const MyApp());
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
+      statusBarColor: Colors.black,
     ),
   );
 }

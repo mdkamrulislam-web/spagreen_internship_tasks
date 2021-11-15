@@ -219,6 +219,44 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
 
+    // ! Sign Up with Google Button
+    final signUpWithGoogleButton = ElevatedButton(
+      onPressed: () {
+        authController.signInWithGoogle();
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text(
+              "Sign In With Google",
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Image(
+              height: 20,
+              image: AssetImage(
+                "assets/images/google.png",
+              ),
+            ),
+          ],
+        ),
+      ),
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        backgroundColor: MaterialStateProperty.all(
+          const Color(0xFF899cad).withOpacity(0.4),
+        ),
+      ),
+    );
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -234,10 +272,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 Center(
                   child: Column(
                     children: const [
-                      Text(
-                        "Welcome",
-                        style: TextStyle(
-                            fontSize: 32, fontWeight: FontWeight.bold),
+                      Padding(
+                        padding: EdgeInsets.only(top: 24.0),
+                        child: Text(
+                          "Welcome",
+                          style: TextStyle(
+                              fontSize: 32, fontWeight: FontWeight.bold),
+                        ),
                       ),
                       Text(
                         "to Application",
@@ -285,6 +326,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
+                      // ! Sign Up With Google Button
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: signUpWithGoogleButton,
+                      ),
                       // ! Forget Password
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0),
@@ -298,7 +344,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             });
                           },
                           child: const Padding(
-                            padding: EdgeInsets.only(top: 16.0),
+                            padding: EdgeInsets.only(top: 12.0),
                             child: Text(
                               "Forgot password?",
                               style: TextStyle(
@@ -312,6 +358,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 ),
+
                 const SizedBox(),
                 // ! Sign Up Button
                 Row(
