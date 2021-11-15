@@ -331,6 +331,81 @@ class _SignupScreenState extends State<SignupScreen> {
     );
 
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        toolbarHeight: 50.0,
+        elevation: 0,
+        leadingWidth: 93,
+        leading: Padding(
+          padding: const EdgeInsets.only(top: 16.0),
+          child: TextButton.icon(
+            onPressed: () {
+              setState(() {
+                // ignore: avoid_print
+                print("Going Back!");
+                Navigator.pop(context);
+              });
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios_new,
+              color: Color(0xFF1cbb7c),
+            ),
+            label: GestureDetector(
+              onTap: () {
+                setState(() {
+                  // ignore: avoid_print
+                  print("Going Back!");
+                  Navigator.pop(context);
+                });
+              },
+              child: const Text(
+                "Back",
+                style: TextStyle(
+                  color: Color(0xFF1ABB7B),
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+        title: const Center(
+          child: Padding(
+            padding: EdgeInsets.only(top: 16.0),
+            child: Text(
+              "Welcome     ",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: TextButton(
+              onPressed: () {
+                setState(() {
+                  // ignore: avoid_print
+                  print("Showing Info!");
+                  Navigator.pushNamed(context, InfoScreen.id);
+                });
+              },
+              child: const Text(
+                "Info",
+                style: TextStyle(
+                  color: Color(0xFF1ABB7B),
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
@@ -338,80 +413,10 @@ class _SignupScreenState extends State<SignupScreen> {
           child: ListView(
             // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ? Welcome
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        // ignore: avoid_print
-                        print("Going Back!");
-                        Navigator.pop(context);
-                      });
-                    },
-                    child: Row(
-                      children: const [
-                        Icon(
-                          Icons.arrow_back_ios_new,
-                          color: Color(0xFF1cbb7c),
-                        ),
-                        Text(
-                          "Back",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF1cbb7c),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      const Text(
-                        "Welcome",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        width: size.width / 15,
-                      )
-                    ],
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        // ignore: avoid_print
-                        print("Showing Info!");
-                        Navigator.pushNamed(context, InfoScreen.id);
-                      });
-                    },
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: const [
-                        Text(
-                          "Info",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: Color(0xFF1cbb7c),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0),
-                child: Text(
-                  "Sign Up",
-                  style: TextStyle(
-                      fontSize: size.width / 12, fontWeight: FontWeight.bold),
-                ),
+              Text(
+                "Sign Up",
+                style: TextStyle(
+                    fontSize: size.width / 12, fontWeight: FontWeight.bold),
               ),
               // ? Setting Profile Photo
               Center(
@@ -543,7 +548,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsets.only(top: 24.0),
+                              padding: const EdgeInsets.only(top: 16.0),
                               child: signUpButton,
                             ),
                           ),
@@ -647,4 +652,72 @@ class _SignupScreenState extends State<SignupScreen> {
   //     Navigator.pushNamed(context, HomeScreen.id);
   //   }
   // }
+
+  // ? Welcome
+  // Row(
+  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //   children: [
+  //     GestureDetector(
+  //       onTap: () {
+  //         setState(() {
+  //           // ignore: avoid_print
+  //           print("Going Back!");
+  //           Navigator.pop(context);
+  //         });
+  //       },
+  //       child: Row(
+  //         children: const [
+  //           Icon(
+  //             Icons.arrow_back_ios_new,
+  //             color: Color(0xFF1cbb7c),
+  //           ),
+  //           Text(
+  //             "Back",
+  //             style: TextStyle(
+  //               fontSize: 18,
+  //               fontWeight: FontWeight.w500,
+  //               color: Color(0xFF1cbb7c),
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //     Row(
+  //       children: [
+  //         const Text(
+  //           "Welcome",
+  //           style: TextStyle(
+  //             fontSize: 18,
+  //             fontWeight: FontWeight.w600,
+  //           ),
+  //         ),
+  //         SizedBox(
+  //           width: size.width / 15,
+  //         )
+  //       ],
+  //     ),
+  //     GestureDetector(
+  //       onTap: () {
+  //         setState(() {
+  //           // ignore: avoid_print
+  //           print("Showing Info!");
+  //           Navigator.pushNamed(context, InfoScreen.id);
+  //         });
+  //       },
+  //       child: Row(
+  //         crossAxisAlignment: CrossAxisAlignment.end,
+  //         children: const [
+  //           Text(
+  //             "Info",
+  //             style: TextStyle(
+  //               fontSize: 18,
+  //               fontWeight: FontWeight.w500,
+  //               color: Color(0xFF1cbb7c),
+  //             ),
+  //           ),
+  //         ],
+  //       ),
+  //     ),
+  //   ],
+  // ),
 }
