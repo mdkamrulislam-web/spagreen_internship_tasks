@@ -486,7 +486,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             child: Center(
                               child: Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 4.0, bottom: 4),
+                                    const EdgeInsets.only(left: 4.0, bottom: 2),
                                 child: FaIcon(
                                   FontAwesomeIcons.edit,
                                   size: size.width / 22.5,
