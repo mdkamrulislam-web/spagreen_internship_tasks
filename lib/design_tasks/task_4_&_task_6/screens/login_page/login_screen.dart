@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/constants/firebase_auth_constants.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/login_page/forgot_password_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/signup_page/signup_screen.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/theme/theme.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -24,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     Size size = MediaQuery.of(context).size;
     double textFormFieldPadding = 8;
     // ! Email Field
@@ -31,8 +33,9 @@ class _LoginScreenState extends State<LoginScreen> {
       cursorColor: const Color(0xFF1cbb7c),
       decoration: InputDecoration(
         labelText: "Email",
-        floatingLabelStyle: const TextStyle(
-          color: Color(0xFF1cbb7c),
+        floatingLabelStyle: TextStyle(
+          height: theme.focusColor == Colors.white ? 3 : 1,
+          color: const Color(0xFF1cbb7c),
           fontWeight: FontWeight.w600,
         ),
         labelStyle: TextStyle(
@@ -90,7 +93,9 @@ class _LoginScreenState extends State<LoginScreen> {
       obscureText: _isHidden,
       decoration: InputDecoration(
         labelText: "Password",
-        floatingLabelStyle: const TextStyle(
+        floatingLabelStyle: TextStyle(
+          height: theme.focusColor == Colors.white ? 3 : 1,
+          // ignore: prefer_const_constructors
           color: Color(0xFF1cbb7c),
           fontWeight: FontWeight.w600,
         ),
@@ -155,7 +160,6 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       textInputAction: TextInputAction.next,
     );
-
     // ! Login Button
     final loginButton = ElevatedButton(
       onPressed: () {
@@ -191,7 +195,6 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-
     // ! Sign Up Button
     final signUpButton = ElevatedButton(
       onPressed: () {
@@ -218,7 +221,6 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-
     // ! Sign Up with Google Button
     final signUpWithGoogleButton = ElevatedButton(
       onPressed: () {
@@ -256,13 +258,31 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-
     return Scaffold(
+      // ! App Bar
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        toolbarHeight: 50.0,
+        elevation: 0,
+        actions: [
+          IconButton(
+            splashRadius: 20,
+            icon: Icon(
+              Icons.brightness_4_rounded,
+              color: theme.focusColor,
+            ),
+            onPressed: () {
+              currentTheme.toggleTheme();
+            },
+          ),
+        ],
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.only(
-            left: 16.0, right: 16.0,
-            // top: 50
+            left: 16.0,
+            right: 16.0,
           ),
           child: SizedBox(
             height: size.height,
@@ -273,7 +293,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     children: const [
                       Padding(
-                        padding: EdgeInsets.only(top: 40.0),
+                        padding: EdgeInsets.only(top: 00.0),
                         child: Text(
                           'Welcome',
                           style: TextStyle(
@@ -359,7 +379,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
 
-                const SizedBox(),
+                // const SizedBox(),
                 // ! Sign Up Button
                 Row(
                   children: [
@@ -368,7 +388,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(),
+                const SizedBox(
+                  height: 16,
+                ),
               ],
             ),
           ),

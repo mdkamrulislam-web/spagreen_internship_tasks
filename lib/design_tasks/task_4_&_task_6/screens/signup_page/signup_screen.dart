@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/constants/firebase_auth_constants.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/signup_page/terms_conditions_screen.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/theme/theme.dart';
 import 'info_screen.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -36,6 +37,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     Size size = MediaQuery.of(context).size;
     double textFormFieldPadding = 8;
     // ! First Name Field
@@ -43,8 +45,9 @@ class _SignupScreenState extends State<SignupScreen> {
       cursorColor: const Color(0xFF1cbb7c),
       decoration: InputDecoration(
         labelText: "First Name",
-        floatingLabelStyle: const TextStyle(
-          color: Color(0xFF1cbb7c),
+        floatingLabelStyle: TextStyle(
+          height: theme.focusColor == Colors.white ? 3 : 1,
+          color: const Color(0xFF1cbb7c),
           fontWeight: FontWeight.w600,
         ),
         labelStyle: TextStyle(
@@ -89,8 +92,9 @@ class _SignupScreenState extends State<SignupScreen> {
       cursorColor: const Color(0xFF1cbb7c),
       decoration: InputDecoration(
         labelText: "Last Name",
-        floatingLabelStyle: const TextStyle(
-          color: Color(0xFF1cbb7c),
+        floatingLabelStyle: TextStyle(
+          height: theme.focusColor == Colors.white ? 3 : 1,
+          color: const Color(0xFF1cbb7c),
           fontWeight: FontWeight.w600,
         ),
         labelStyle: TextStyle(
@@ -135,8 +139,9 @@ class _SignupScreenState extends State<SignupScreen> {
       cursorColor: const Color(0xFF1cbb7c),
       decoration: InputDecoration(
         labelText: "Email",
-        floatingLabelStyle: const TextStyle(
-          color: Color(0xFF1cbb7c),
+        floatingLabelStyle: TextStyle(
+          height: theme.focusColor == Colors.white ? 3 : 1,
+          color: const Color(0xFF1cbb7c),
           fontWeight: FontWeight.w600,
         ),
         labelStyle: TextStyle(
@@ -182,8 +187,9 @@ class _SignupScreenState extends State<SignupScreen> {
       obscureText: _isHidden,
       decoration: InputDecoration(
         labelText: "Password",
-        floatingLabelStyle: const TextStyle(
-          color: Color(0xFF1cbb7c),
+        floatingLabelStyle: TextStyle(
+          height: theme.focusColor == Colors.white ? 3 : 1,
+          color: const Color(0xFF1cbb7c),
           fontWeight: FontWeight.w600,
         ),
         labelStyle: TextStyle(
@@ -243,8 +249,9 @@ class _SignupScreenState extends State<SignupScreen> {
       obscureText: _isConPassHidden,
       decoration: InputDecoration(
         labelText: "Confirm Password",
-        floatingLabelStyle: const TextStyle(
-          color: Color(0xFF1cbb7c),
+        floatingLabelStyle: TextStyle(
+          height: theme.focusColor == Colors.white ? 3 : 1,
+          color: const Color(0xFF1cbb7c),
           fontWeight: FontWeight.w600,
         ),
         labelStyle: TextStyle(
@@ -331,10 +338,10 @@ class _SignupScreenState extends State<SignupScreen> {
     );
 
     return Scaffold(
+      // ! App Bar
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.transparent,
-        toolbarHeight: 50.0,
         elevation: 0,
         leadingWidth: 93,
         leading: Padding(
@@ -370,20 +377,35 @@ class _SignupScreenState extends State<SignupScreen> {
             ),
           ),
         ),
-        title: const Center(
+        title: Center(
           child: Padding(
-            padding: EdgeInsets.only(top: 16.0),
+            padding: const EdgeInsets.only(top: 16.0),
             child: Text(
-              "Welcome     ",
+              "Welcome",
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
-                color: Colors.black,
+                color: theme.focusColor == Colors.white
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
           ),
         ),
         actions: [
+          Padding(
+            padding: const EdgeInsets.only(top: 16.0),
+            child: IconButton(
+              splashRadius: 20,
+              icon: Icon(
+                Icons.brightness_4_rounded,
+                color: theme.focusColor,
+              ),
+              onPressed: () {
+                currentTheme.toggleTheme();
+              },
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 16.0),
             child: TextButton(
@@ -406,7 +428,7 @@ class _SignupScreenState extends State<SignupScreen> {
           ),
         ],
       ),
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(top: 16, left: 16.0, right: 16.0),
@@ -435,6 +457,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 ? Image.asset('assets/images/transparent.png')
                                 : Container(
                                     decoration: BoxDecoration(
+                                        color: const Color(0xFFf3f3f3),
                                         shape: BoxShape.circle,
                                         image: DecorationImage(
                                           fit: BoxFit.fill,

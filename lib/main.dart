@@ -18,6 +18,7 @@ import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/l
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/signup_page/terms_conditions_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/secure_code_page/secure_code_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/phone_number_page/phone_number_screen.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/theme/theme.dart';
 import 'design_tasks/task_4_&_task_6/constants/firebase_auth_constants.dart';
 
 Future<void> main() async {
@@ -35,50 +36,77 @@ Future<void> main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    currentTheme.addListener(() {
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: LoginScreen.id,
-      // ChapterList.id,
-      routes: {
-        // ! Chapter Page
-        ChapterList.id: (context) => const ChapterList(),
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
 
-        // ! Design Tasks
-        DesignTasks.id: (context) => const DesignTasks(),
-
-        // ! Task 1 - Card Design
-        CardsList.id: (context) => const CardsList(),
-        RestaurantCard.id: (context) => RestaurantCard(
-              size: MediaQuery.of(context).size,
-              restaurantModel: restaurantModels[0],
-            ),
-
-        // ! Task 4
-        LoginScreen.id: (context) => const LoginScreen(),
-        ForgotPasswordScreen.id: (context) => const ForgotPasswordScreen(),
-        SignupScreen.id: (context) => const SignupScreen(),
-        InfoScreen.id: (context) => const InfoScreen(),
-        TermsConditionsScreen.id: (context) => const TermsConditionsScreen(),
-        PhoneNumberScreen.id: (context) => const PhoneNumberScreen(),
-        SecureCodeScreen.id: (context) => const SecureCodeScreen(),
-        PasscodeScreen.id: (context) =>
-            const PasscodeScreen(userPasscode: '1234'),
-        HomeScreen.id: (context) => const HomeScreen(),
-
-        // ! Back-end Tasks
-        BackEndTasks.id: (context) => const BackEndTasks(),
-
-        // ! Task 1
-        SimpleListDataCall.id: (context) => const SimpleListDataCall(),
+        if (!currentFocus.hasPrimaryFocus &&
+            currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus!.unfocus();
+        }
       },
+      child: GetMaterialApp(
+        // ! Theme Settings
+        theme: CustomTheme.lightTheme,
+        darkTheme: CustomTheme.darkTheme,
+        themeMode: currentTheme.currentTheme,
 
-      title: 'Login Signup Demo',
+        debugShowCheckedModeBanner: false,
+        initialRoute: LoginScreen.id,
+        // ChapterList.id,
+        routes: {
+          // ! Chapter Page
+          ChapterList.id: (context) => const ChapterList(),
+
+          // ! Design Tasks
+          DesignTasks.id: (context) => const DesignTasks(),
+
+          // ! Task 1 - Card Design
+          CardsList.id: (context) => const CardsList(),
+          RestaurantCard.id: (context) => RestaurantCard(
+                size: MediaQuery.of(context).size,
+                restaurantModel: restaurantModels[0],
+              ),
+
+          // ! Task 4
+          LoginScreen.id: (context) => const LoginScreen(),
+          ForgotPasswordScreen.id: (context) => const ForgotPasswordScreen(),
+          SignupScreen.id: (context) => const SignupScreen(),
+          InfoScreen.id: (context) => const InfoScreen(),
+          TermsConditionsScreen.id: (context) => const TermsConditionsScreen(),
+          PhoneNumberScreen.id: (context) => const PhoneNumberScreen(),
+          SecureCodeScreen.id: (context) => const SecureCodeScreen(),
+          PasscodeScreen.id: (context) =>
+              const PasscodeScreen(userPasscode: '1234'),
+          HomeScreen.id: (context) => const HomeScreen(),
+
+          // ! Back-end Tasks
+          BackEndTasks.id: (context) => const BackEndTasks(),
+
+          // ! Task 1
+          SimpleListDataCall.id: (context) => const SimpleListDataCall(),
+        },
+
+        title: 'Login Signup Demo',
+      ),
     );
   }
 }
