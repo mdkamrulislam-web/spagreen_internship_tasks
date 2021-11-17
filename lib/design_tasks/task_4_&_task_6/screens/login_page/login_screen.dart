@@ -3,6 +3,8 @@ import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/constants
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/login_page/forgot_password_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/signup_page/signup_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/theme/theme.dart';
+import 'package:get/get.dart';
+import 'package:flag/flag.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -13,6 +15,68 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final List locale = [
+    {
+      'name': 'English',
+      'locale': const Locale('en', 'US'),
+      'flag': const Flag.fromString('US', height: 30, width: 80),
+    },
+    {
+      'name': 'বাংলা',
+      'locale': const Locale('bn', 'BD'),
+      'flag': const Flag.fromString('BD', height: 30, width: 80),
+    },
+  ];
+
+  updateLanguage(Locale locale) {
+    Get.back();
+    Get.updateLocale(locale);
+  }
+
+  String langauge = 'English';
+
+  // ignore: avoid_types_as_parameter_names
+  buildDialog(BuildContext) {
+    showDialog(
+        context: context,
+        builder: (builder) {
+          return AlertDialog(
+            title: const Text('Choose Your Language'),
+            content: SizedBox(
+              width: double.maxFinite,
+              child: ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        langauge = locale[index]['name'];
+                        print(locale[index]['name']);
+                        updateLanguage(locale[index]['locale']);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(locale[index]['name']),
+                          locale[index]['flag'],
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return const Divider(
+                    color: Color(0xFF1cbb7c),
+                  );
+                },
+                itemCount: locale.length,
+              ),
+            ),
+          );
+        });
+  }
+
   // * Password Visibility Initialization
   bool _isHidden = true;
 
@@ -30,12 +94,14 @@ class _LoginScreenState extends State<LoginScreen> {
     double textFormFieldPadding = 8;
     // ! Email Field
     final emailField = TextFormField(
+      style: TextStyle(
+        color: theme.focusColor == Colors.white ? Colors.white : Colors.black,
+      ),
       cursorColor: const Color(0xFF1cbb7c),
       decoration: InputDecoration(
-        labelText: "Email",
-        floatingLabelStyle: TextStyle(
-          height: theme.focusColor == Colors.white ? 3 : 1,
-          color: const Color(0xFF1cbb7c),
+        labelText: 'email'.tr,
+        floatingLabelStyle: const TextStyle(
+          color: Color(0xFF1cbb7c),
           fontWeight: FontWeight.w600,
         ),
         labelStyle: TextStyle(
@@ -66,7 +132,9 @@ class _LoginScreenState extends State<LoginScreen> {
           borderSide: BorderSide.none,
         ),
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-        fillColor: const Color(0xFFf3f3f3),
+        fillColor: theme.focusColor == Colors.white
+            ? Colors.grey.shade800
+            : const Color(0xFFf3f3f3),
         filled: true,
       ),
       autofocus: false,
@@ -89,12 +157,14 @@ class _LoginScreenState extends State<LoginScreen> {
     );
     // ! Password Field
     final passwordField = TextFormField(
+      style: TextStyle(
+        color: theme.focusColor == Colors.white ? Colors.white : Colors.black,
+      ),
       cursorColor: const Color(0xFF1cbb7c),
       obscureText: _isHidden,
       decoration: InputDecoration(
-        labelText: "Password",
-        floatingLabelStyle: TextStyle(
-          height: theme.focusColor == Colors.white ? 3 : 1,
+        labelText: "password".tr,
+        floatingLabelStyle: const TextStyle(
           // ignore: prefer_const_constructors
           color: Color(0xFF1cbb7c),
           fontWeight: FontWeight.w600,
@@ -126,7 +196,9 @@ class _LoginScreenState extends State<LoginScreen> {
           borderSide: BorderSide.none,
         ),
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-        fillColor: const Color(0xFFf3f3f3),
+        fillColor: theme.focusColor == Colors.white
+            ? Colors.grey.shade800
+            : const Color(0xFFf3f3f3),
         filled: true,
 
         suffixIcon: Padding(
@@ -138,7 +210,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Icon(
               _isHidden ? Icons.visibility_off : Icons.visibility,
               size: 20,
-              color: const Color(0xFF1cbb7c),
+              color: _isHidden ? Colors.grey : const Color(0xFF1cbb7c),
             ),
           ),
         ),
@@ -177,11 +249,11 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         }
       },
-      child: const Padding(
-        padding: EdgeInsets.all(12.0),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
         child: Text(
-          "Sign In",
-          style: TextStyle(fontSize: 18),
+          'signIn'.tr,
+          style: const TextStyle(fontSize: 18),
         ),
       ),
       style: ButtonStyle(
@@ -203,11 +275,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
         Navigator.pushNamed(context, SignupScreen.id);
       },
-      child: const Padding(
-        padding: EdgeInsets.all(12.0),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
         child: Text(
-          "Sign Up",
-          style: TextStyle(fontSize: 18),
+          "signUp".tr,
+          style: const TextStyle(fontSize: 18),
         ),
       ),
       style: ButtonStyle(
@@ -230,15 +302,15 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: const EdgeInsets.all(12.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Text(
-              "Sign In With Google",
-              style: TextStyle(fontSize: 18),
+              "signInGoogle".tr,
+              style: const TextStyle(fontSize: 18),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
-            Image(
+            const Image(
               height: 20,
               image: AssetImage(
                 "assets/images/google.png",
@@ -265,16 +337,50 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Colors.transparent,
         toolbarHeight: 50.0,
         elevation: 0,
-        actions: [
-          IconButton(
-            splashRadius: 20,
-            icon: Icon(
-              Icons.brightness_4_rounded,
-              color: theme.focusColor,
-            ),
-            onPressed: () {
-              currentTheme.toggleTheme();
+        leadingWidth: 200,
+        leading: Padding(
+          padding: const EdgeInsets.only(right: 16.0),
+          child: GestureDetector(
+            onTap: () {
+              buildDialog(context);
             },
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16.0, top: 16),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.language,
+                    color: Color(0xFF1cbb7c),
+                  ),
+                  const SizedBox(
+                    width: 4,
+                  ),
+                  Text(
+                    langauge,
+                    style: const TextStyle(
+                      color: Color(0xFF1cbb7c),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0, top: 16.0),
+            child: IconButton(
+              splashRadius: 20,
+              icon: Icon(
+                Icons.brightness_4_rounded,
+                color: theme.focusColor,
+              ),
+              onPressed: () {
+                currentTheme.toggleTheme();
+              },
+            ),
           ),
         ],
       ),
@@ -291,18 +397,18 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 Center(
                   child: Column(
-                    children: const [
+                    children: [
                       Padding(
-                        padding: EdgeInsets.only(top: 00.0),
+                        padding: const EdgeInsets.only(top: 00.0),
                         child: Text(
-                          'Welcome',
-                          style: TextStyle(
+                          'welcome'.tr,
+                          style: const TextStyle(
                               fontSize: 32, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Text(
-                        "to Application",
-                        style: TextStyle(
+                        'toApplication'.tr,
+                        style: const TextStyle(
                             fontSize: 32, fontWeight: FontWeight.bold),
                       ),
                     ],
@@ -319,7 +425,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             vertical: textFormFieldPadding),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: const Color(0x0fffffff),
+                              color: theme.focusColor == Colors.white
+                                  ? Colors.grey.shade900
+                                  : const Color(0x0fffffff),
                               borderRadius: BorderRadius.circular(10)),
                           child: emailField,
                         ),
@@ -330,7 +438,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             vertical: textFormFieldPadding),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: const Color(0x0fffffff),
+                              color: theme.focusColor == Colors.white
+                                  ? Colors.grey.shade900
+                                  : const Color(0x0fffffff),
                               borderRadius: BorderRadius.circular(10)),
                           child: passwordField,
                         ),
@@ -363,11 +473,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                   context, ForgotPasswordScreen.id);
                             });
                           },
-                          child: const Padding(
-                            padding: EdgeInsets.only(top: 12.0),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
                             child: Text(
-                              "Forgot password?",
-                              style: TextStyle(
+                              "forgotPass".tr,
+                              style: const TextStyle(
                                 color: Color(0xFF1cbb7c),
                                 fontWeight: FontWeight.bold,
                               ),
@@ -381,16 +491,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 // const SizedBox(),
                 // ! Sign Up Button
-                Row(
-                  children: [
-                    Expanded(
-                      child: signUpButton,
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: signUpButton,
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(
-                  height: 16,
-                ),
+                    // height: 24,
+                    ),
               ],
             ),
           ),

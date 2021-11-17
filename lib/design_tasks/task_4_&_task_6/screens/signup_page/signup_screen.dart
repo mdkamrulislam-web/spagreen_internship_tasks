@@ -8,6 +8,7 @@ import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/constants
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/signup_page/terms_conditions_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/theme/theme.dart';
 import 'info_screen.dart';
+import 'package:get/get.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -42,12 +43,15 @@ class _SignupScreenState extends State<SignupScreen> {
     double textFormFieldPadding = 8;
     // ! First Name Field
     final firstNameField = TextFormField(
+      style: TextStyle(
+        color: theme.focusColor == Colors.white ? Colors.white : Colors.black,
+      ),
       cursorColor: const Color(0xFF1cbb7c),
       decoration: InputDecoration(
-        labelText: "First Name",
-        floatingLabelStyle: TextStyle(
-          height: theme.focusColor == Colors.white ? 3 : 1,
-          color: const Color(0xFF1cbb7c),
+        labelText: "firstName".tr,
+        floatingLabelStyle: const TextStyle(
+          //
+          color: Color(0xFF1cbb7c),
           fontWeight: FontWeight.w600,
         ),
         labelStyle: TextStyle(
@@ -66,7 +70,9 @@ class _SignupScreenState extends State<SignupScreen> {
           borderSide: BorderSide.none,
         ),
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-        fillColor: const Color(0xFFf3f3f3),
+        fillColor: theme.focusColor == Colors.white
+            ? Colors.grey.shade800
+            : const Color(0xFFf3f3f3),
         filled: true,
       ),
       autofocus: false,
@@ -89,12 +95,14 @@ class _SignupScreenState extends State<SignupScreen> {
     );
     // ! Last Name Field
     final lastNameField = TextFormField(
+      style: TextStyle(
+        color: theme.focusColor == Colors.white ? Colors.white : Colors.black,
+      ),
       cursorColor: const Color(0xFF1cbb7c),
       decoration: InputDecoration(
-        labelText: "Last Name",
-        floatingLabelStyle: TextStyle(
-          height: theme.focusColor == Colors.white ? 3 : 1,
-          color: const Color(0xFF1cbb7c),
+        labelText: "lastName".tr,
+        floatingLabelStyle: const TextStyle(
+          color: Color(0xFF1cbb7c),
           fontWeight: FontWeight.w600,
         ),
         labelStyle: TextStyle(
@@ -113,7 +121,9 @@ class _SignupScreenState extends State<SignupScreen> {
           borderSide: BorderSide.none,
         ),
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-        fillColor: const Color(0xFFf3f3f3),
+        fillColor: theme.focusColor == Colors.white
+            ? Colors.grey.shade800
+            : const Color(0xFFf3f3f3),
         filled: true,
       ),
       autofocus: false,
@@ -136,12 +146,14 @@ class _SignupScreenState extends State<SignupScreen> {
     );
     // ! Email Field
     final emailField = TextFormField(
+      style: TextStyle(
+        color: theme.focusColor == Colors.white ? Colors.white : Colors.black,
+      ),
       cursorColor: const Color(0xFF1cbb7c),
       decoration: InputDecoration(
-        labelText: "Email",
-        floatingLabelStyle: TextStyle(
-          height: theme.focusColor == Colors.white ? 3 : 1,
-          color: const Color(0xFF1cbb7c),
+        labelText: "email".tr,
+        floatingLabelStyle: const TextStyle(
+          color: Color(0xFF1cbb7c),
           fontWeight: FontWeight.w600,
         ),
         labelStyle: TextStyle(
@@ -160,7 +172,9 @@ class _SignupScreenState extends State<SignupScreen> {
           borderSide: BorderSide.none,
         ),
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-        fillColor: const Color(0xFFf3f3f3),
+        fillColor: theme.focusColor == Colors.white
+            ? Colors.grey.shade800
+            : const Color(0xFFf3f3f3),
         filled: true,
       ),
       autofocus: false,
@@ -183,13 +197,15 @@ class _SignupScreenState extends State<SignupScreen> {
     );
     // ! Password Field
     final passwordField = TextFormField(
+      style: TextStyle(
+        color: theme.focusColor == Colors.white ? Colors.white : Colors.black,
+      ),
       cursorColor: const Color(0xFF1cbb7c),
       obscureText: _isHidden,
       decoration: InputDecoration(
-        labelText: "Password",
-        floatingLabelStyle: TextStyle(
-          height: theme.focusColor == Colors.white ? 3 : 1,
-          color: const Color(0xFF1cbb7c),
+        labelText: "password".tr,
+        floatingLabelStyle: const TextStyle(
+          color: Color(0xFF1cbb7c),
           fontWeight: FontWeight.w600,
         ),
         labelStyle: TextStyle(
@@ -208,7 +224,9 @@ class _SignupScreenState extends State<SignupScreen> {
           borderSide: BorderSide.none,
         ),
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-        fillColor: const Color(0xFFf3f3f3),
+        fillColor: theme.focusColor == Colors.white
+            ? Colors.grey.shade800
+            : const Color(0xFFf3f3f3),
         filled: true,
         suffixIcon: Padding(
           padding: const EdgeInsets.only(right: 16.0),
@@ -245,13 +263,15 @@ class _SignupScreenState extends State<SignupScreen> {
     );
     // ! Confrim Password Field
     final confirmPassField = TextFormField(
+      style: TextStyle(
+        color: theme.focusColor == Colors.white ? Colors.white : Colors.black,
+      ),
       cursorColor: const Color(0xFF1cbb7c),
       obscureText: _isConPassHidden,
       decoration: InputDecoration(
-        labelText: "Confirm Password",
-        floatingLabelStyle: TextStyle(
-          height: theme.focusColor == Colors.white ? 3 : 1,
-          color: const Color(0xFF1cbb7c),
+        labelText: "confirmPass".tr,
+        floatingLabelStyle: const TextStyle(
+          color: Color(0xFF1cbb7c),
           fontWeight: FontWeight.w600,
         ),
         labelStyle: TextStyle(
@@ -270,7 +290,9 @@ class _SignupScreenState extends State<SignupScreen> {
           borderSide: BorderSide.none,
         ),
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-        fillColor: const Color(0xFFf3f3f3),
+        fillColor: theme.focusColor == Colors.white
+            ? Colors.grey.shade800
+            : const Color(0xFFf3f3f3),
         filled: true,
         suffixIcon: Padding(
           padding: const EdgeInsets.only(right: 16.0),
@@ -318,11 +340,11 @@ class _SignupScreenState extends State<SignupScreen> {
           );
         }
       },
-      child: const Padding(
-        padding: EdgeInsets.all(12.0),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
         child: Text(
-          "Continue to Create",
-          style: TextStyle(fontSize: 18),
+          "continueToCreate".tr,
+          style: const TextStyle(fontSize: 18),
         ),
       ),
       style: ButtonStyle(
@@ -343,9 +365,9 @@ class _SignupScreenState extends State<SignupScreen> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leadingWidth: 93,
+        leadingWidth: 500,
         leading: Padding(
-          padding: const EdgeInsets.only(top: 16.0),
+          padding: const EdgeInsets.only(top: 16.0, right: 8),
           child: TextButton.icon(
             onPressed: () {
               setState(() {
@@ -366,9 +388,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   Navigator.pop(context);
                 });
               },
-              child: const Text(
-                "Back",
-                style: TextStyle(
+              child: Text(
+                "back".tr,
+                style: const TextStyle(
                   color: Color(0xFF1ABB7B),
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -381,7 +403,7 @@ class _SignupScreenState extends State<SignupScreen> {
           child: Padding(
             padding: const EdgeInsets.only(top: 16.0),
             child: Text(
-              "Welcome",
+              "welcome".tr,
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
@@ -416,9 +438,9 @@ class _SignupScreenState extends State<SignupScreen> {
                   Navigator.pushNamed(context, InfoScreen.id);
                 });
               },
-              child: const Text(
-                "Info",
-                style: TextStyle(
+              child: Text(
+                "info".tr,
+                style: const TextStyle(
                   color: Color(0xFF1ABB7B),
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -436,7 +458,7 @@ class _SignupScreenState extends State<SignupScreen> {
             // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Sign Up",
+                "signUp".tr,
                 style: TextStyle(
                     fontSize: size.width / 12, fontWeight: FontWeight.bold),
               ),
@@ -517,7 +539,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             vertical: textFormFieldPadding),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: const Color(0x0fffffff),
+                              color: theme.focusColor == Colors.white
+                                  ? Colors.grey.shade900
+                                  : const Color(0x0fffffff),
                               borderRadius: BorderRadius.circular(10)),
                           child: firstNameField,
                         ),
@@ -528,7 +552,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             vertical: textFormFieldPadding),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: const Color(0x0fffffff),
+                              color: theme.focusColor == Colors.white
+                                  ? Colors.grey.shade900
+                                  : const Color(0x0fffffff),
                               borderRadius: BorderRadius.circular(10)),
                           child: lastNameField,
                         ),
@@ -539,7 +565,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             vertical: textFormFieldPadding),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: const Color(0x0fffffff),
+                              color: theme.focusColor == Colors.white
+                                  ? Colors.grey.shade900
+                                  : const Color(0x0fffffff),
                               borderRadius: BorderRadius.circular(10)),
                           child: emailField,
                         ),
@@ -550,7 +578,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             vertical: textFormFieldPadding),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: const Color(0x0fffffff),
+                              color: theme.focusColor == Colors.white
+                                  ? Colors.grey.shade900
+                                  : const Color(0x0fffffff),
                               borderRadius: BorderRadius.circular(10)),
                           child: passwordField,
                         ),
@@ -561,7 +591,9 @@ class _SignupScreenState extends State<SignupScreen> {
                             vertical: textFormFieldPadding),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: const Color(0x0fffffff),
+                              color: theme.focusColor == Colors.white
+                                  ? Colors.grey.shade900
+                                  : const Color(0x0fffffff),
                               borderRadius: BorderRadius.circular(10)),
                           child: confirmPassField,
                         ),
@@ -584,9 +616,9 @@ class _SignupScreenState extends State<SignupScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
-                              "I agree to ",
-                              style: TextStyle(
+                            Text(
+                              "iAgreeTo".tr,
+                              style: const TextStyle(
                                 color: Color(0xFF899cad),
                                 fontWeight: FontWeight.bold,
                               ),
@@ -600,9 +632,9 @@ class _SignupScreenState extends State<SignupScreen> {
                                       context, TermsConditionsScreen.id);
                                 });
                               },
-                              child: const Text(
-                                "Terms & Conditions",
-                                style: TextStyle(
+                              child: Text(
+                                "termsConditions".tr,
+                                style: const TextStyle(
                                   color: Color(0xFF1cbb7c),
                                   fontWeight: FontWeight.bold,
                                 ),

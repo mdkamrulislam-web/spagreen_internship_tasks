@@ -19,6 +19,7 @@ import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/s
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/secure_code_page/secure_code_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/phone_number_page/phone_number_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/theme/theme.dart';
+import 'package:login_signup_page_flutter/l10n/locale_string.dart';
 import 'design_tasks/task_4_&_task_6/constants/firebase_auth_constants.dart';
 
 Future<void> main() async {
@@ -106,6 +107,9 @@ class _MyAppState extends State<MyApp> {
         },
 
         title: 'Login Signup Demo',
+
+        translations: LocaleString(),
+        locale: const  Locale('en', 'US'),
       ),
     );
   }
