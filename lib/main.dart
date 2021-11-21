@@ -7,7 +7,7 @@ import 'package:login_signup_page_flutter/chapters.dart';
 import 'package:login_signup_page_flutter/design_tasks/design_tasks.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_1_card_design/cards_list.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/controllers/auth_controller.dart';
-import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/home_screen.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/home_page/home_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_1_card_design/restaurant_card_design.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_1_card_design/datamodels/restarunt_model.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/login_page/login_screen.dart';
@@ -19,7 +19,7 @@ import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/s
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/secure_code_page/secure_code_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/phone_number_page/phone_number_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/theme/theme.dart';
-import 'package:login_signup_page_flutter/l10n/locale_string.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/l10n/locale_string.dart';
 import 'design_tasks/task_4_&_task_6/constants/firebase_auth_constants.dart';
 
 Future<void> main() async {

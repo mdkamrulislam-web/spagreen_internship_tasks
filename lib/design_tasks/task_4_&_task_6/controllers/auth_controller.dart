@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/constants/firebase_auth_constants.dart';
-import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/home_screen.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/helper/firestore_db.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/home_page/home_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/login_page/login_screen.dart';
 // import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/signup_page/signup_screen.dart';
 
@@ -12,6 +14,7 @@ class AuthController extends GetxController {
 
   // late ConfirmationResult confirmationResult;  // ! For Phone Authentication
   late Rx<GoogleSignInAccount?> googleSignInAccount;
+  // String? errorMessage;
 
   @override
   void onReady() {
@@ -77,17 +80,42 @@ class AuthController extends GetxController {
   Future<void> register(String email, String password) async {
     try {
       await auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+        email: email,
+        password: password,
+      );
+      await FirestoreDB.addUser(email);
     } catch (e) {
       print(e.toString());
     }
   }
 
   Future<void> login(String email, String password) async {
+    // String errorMessage;
     try {
-      await auth.signInWithEmailAndPassword(email: email, password: password);
+      await auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((uid) => {Fluttertoast.showToast(msg: 'Login Successful')});
     } catch (e) {
+      Fluttertoast.showToast(
+        msg:
+            // e.toString(),
+            errorMessage(
+          e.toString(),
+        ),
+      );
       print(e.toString());
+    }
+  }
+
+  String errorMessage(String? e) {
+    if (e ==
+        "[firebase_auth/user-not-found] There is no user record corresponding to this identifier. The user may have been deleted.") {
+      return "There is no user record corresponding to this identifier. The user may have been deleted.";
+    } else if (e ==
+        "[firebase_auth/wrong-password] The password is invalid or the user does not have a password.") {
+      return "The password is invalid or the user does not have a password.";
+    } else {
+      return "";
     }
   }
 

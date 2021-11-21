@@ -11,6 +11,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final contentTextEditor = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,42 +34,42 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              const Text(
+            children: const <Widget>[
+              Text(
                 "Welcome",
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 10.0,
               ),
-              const Text(
+              Text(
                 "Name",
                 style: TextStyle(
                   color: Colors.black54,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const Text(
+              Text(
                 "Email",
                 style: TextStyle(
                   color: Colors.black54,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 15.0,
               ),
-              ActionChip(
-                label: const Text('Logout'),
-                onPressed: () {
-                  // Navigator.pop(context);
-                  // ignore: avoid_print
-                  print('Logging Out');
-                },
-              ),
+              // ActionChip(
+              //   label: const Text('Logout'),
+              //   onPressed: () {
+              //     // Navigator.pop(context);
+              //     // ignore: avoid_print
+              //     print('Logging Out');
+              //   },
+              // ),
             ],
           ),
         ),

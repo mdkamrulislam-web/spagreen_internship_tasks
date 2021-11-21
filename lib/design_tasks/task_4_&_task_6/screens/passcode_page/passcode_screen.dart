@@ -3,7 +3,7 @@ import 'package:animator/animator.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/constants/const.dart'
     as cons;
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/models/display_data.dart';
-import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/home_screen.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/screens/home_page/home_screen.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/widgets/background_widget.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/widgets/numpad_widget.dart';
 

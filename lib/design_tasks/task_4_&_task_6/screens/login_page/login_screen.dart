@@ -126,7 +126,6 @@ class _LoginScreenState extends State<LoginScreen> {
         //   Icons.email,
         //   color: Color(0xFF1cbb7c),
         // ),
-
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
