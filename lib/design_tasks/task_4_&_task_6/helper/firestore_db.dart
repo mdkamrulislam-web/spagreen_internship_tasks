@@ -1,24 +1,50 @@
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/constants/firebase_auth_constants.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/constants/firebase_auth_constants.dart';
-import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/models/data_model/todo_model.dart';
+import 'package:login_signup_page_flutter/design_tasks/task_4_&_task_6/models/data_model/user_model.dart';
 
 class FirestoreDB {
-  static addUser(String email) async {
-    await firebaseFirestore.collection('users').doc(auth.currentUser!.uid).set({
-      'email': email,
-      'createdOn': Timestamp.now(),
-    });
-  }
+//   static addUser(
+//     String email,
+//     String firstName,
+//     String lastName,
+//     String uid,
+//   ) async {
+//     await firebaseFirestore.collection('users').doc(auth.currentUser!.uid).set({
+//       'email': email,
+//       'createdOn': Timestamp.now(),
+//       'firstName': firstName,
+//       'lastName': lastName,
+//       'uid': uid,
+//     });
+//   }
 
-  static addTodo(TodoModel todoModel) async {
+
+  static postDetailsToFirestore(String firstName, String lastName) async {
+    // * Calling Firestore
+    // * Calling User Model
+    // * Sending These Values
+
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    User? user = auth.currentUser;
+
+    UserModel userModel = UserModel();
+
+    // * Writing All the values
+    userModel.email = user!.email;
+    userModel.uid = user.uid;
+    userModel.firstName = firstName;
+    userModel.lastName = lastName;
+
     await firebaseFirestore
-        .collection('users')
-        .doc(auth.currentUser!.uid)
-        .collection('todos')
-        .add({
-      'content': todoModel.content,
-      'isDone': todoModel.isDone,
-      'createdOn': Timestamp.now(),
-    });
+        .collection("users")
+        .doc(user.uid)
+        .set(userModel.toMap());
+    Fluttertoast.showToast(msg: "Your Sign-up is Successful!");
   }
 }
+

@@ -50,6 +50,7 @@ class AuthController extends GetxController {
     }
   }
 
+  // ! SIGNUP WITH GOOGLE FUNCTION
   void signInWithGoogle() async {
     try {
       GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
@@ -62,9 +63,10 @@ class AuthController extends GetxController {
           idToken: googleSignInAuthentication.idToken,
         );
 
-        await auth
-            .signInWithCredential(credential)
-            .catchError((err) => print(err));
+        // ignore: invalid_return_type_for_catch_error
+        await auth.signInWithCredential(credential).catchError((err) => {
+              // print(err),
+            });
       }
     } on FirebaseAuthException catch (firebaseAuthException) {
       Get.snackbar(
@@ -73,22 +75,32 @@ class AuthController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
   }
 
-  Future<void> register(String email, String password) async {
+  // ! SIGNUP FUNCTION
+  Future<void> register(
+      String email, String password, String firstName, String lastName) async {
     try {
-      await auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      await FirestoreDB.addUser(email);
+      await auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) =>
+              {FirestoreDB.postDetailsToFirestore(firstName, lastName)});
+      // await FirestoreDB.addUser(email, firstName, lastName);
     } catch (e) {
-      print(e.toString());
+      Fluttertoast.showToast(
+        msg:
+            // e.toString(),
+            errorMessage(
+          e.toString(),
+        ),
+      );
+      // print(e.toString());
     }
   }
 
+  // ! LOGIN FUNCTION
   Future<void> login(String email, String password) async {
     // String errorMessage;
     try {
@@ -103,10 +115,11 @@ class AuthController extends GetxController {
           e.toString(),
         ),
       );
-      print(e.toString());
+      // print(e.toString());
     }
   }
 
+  // ! ERROR MESSAGES FUNCTION
   String errorMessage(String? e) {
     if (e ==
         "[firebase_auth/user-not-found] There is no user record corresponding to this identifier. The user may have been deleted.") {
@@ -114,12 +127,21 @@ class AuthController extends GetxController {
     } else if (e ==
         "[firebase_auth/wrong-password] The password is invalid or the user does not have a password.") {
       return "The password is invalid or the user does not have a password.";
-    } else {
+    } else if (e ==
+        "[firebase_auth/email-already-in-use] The email address is already in use by another account.") {
+      return "The email address is already in use by another account.";
+    }
+    //
+    else {
       return "";
     }
   }
 
+  // ! LOGOUT FUNCTION
   Future<void> logout() async {
     await auth.signOut();
   }
+
+  // ! POSTING VALUES ON FIRESTORE DATABASE FUNCTION
+
 }

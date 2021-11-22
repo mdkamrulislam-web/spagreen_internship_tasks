@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   String langauge = 'English';
 
-  // ignore: avoid_types_as_parameter_names
+  // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
   buildDialog(BuildContext) {
     showDialog(
         context: context,
@@ -52,7 +52,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: GestureDetector(
                       onTap: () {
                         langauge = locale[index]['name'];
-                        print(locale[index]['name']);
                         updateLanguage(locale[index]['locale']);
                       },
                       child: Row(
@@ -144,7 +143,8 @@ class _LoginScreenState extends State<LoginScreen> {
           return "Please Enter Your Email!";
         }
         //reg expression for email validation
-        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-zA-Z]")
+            .hasMatch(value)) {
           return ("Please Enter a valid email");
         }
         return null;
@@ -237,7 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
         if (_formKey.currentState!.validate()) {
           // logIn(emailController.text, passwordController.text);
           authController.login(
-            emailController.text.trim(),
+            emailController.text.trim().toLowerCase(),
             passwordController.text.trim(),
           );
           ScaffoldMessenger.of(context).showSnackBar(

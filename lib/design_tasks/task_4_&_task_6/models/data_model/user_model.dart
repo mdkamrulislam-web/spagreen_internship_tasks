@@ -17,7 +17,7 @@ class UserModel {
   Map<String, dynamic> toMap() {
     return {
       'uid': uid,
-      'email': email,
+      'email': email!.toLowerCase(),
       'firstName': firstName,
       'lastName': lastName,
     };

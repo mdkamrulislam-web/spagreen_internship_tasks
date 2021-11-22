@@ -331,6 +331,8 @@ class _SignupScreenState extends State<SignupScreen> {
           authController.register(
             emailController.text.trim(),
             passwordController.text.trim(),
+            firstNameController.text,
+            lastNameController.text,
           );
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
